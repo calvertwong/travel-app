@@ -125,7 +125,7 @@
                 android:id="@+id/register_login_here_tv"
                 style="@style/AuthMessageTextStyle"
                 android:text="@string/login_here"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorLinkBlue"
                 app:layout_constraintStart_toEndOf="@+id/register_alread_a_user_tv"
                 tools:ignore="MissingConstraints" />
 

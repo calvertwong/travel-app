@@ -30,7 +30,6 @@ public class RegisterFragment extends Fragment {
 
     private void init() {
         Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setTitle(getString(R.string.sign_up));
-        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 }
