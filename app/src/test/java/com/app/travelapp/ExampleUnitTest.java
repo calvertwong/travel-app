@@ -1,4 +1,4 @@
-package com.travelapp.srsstravel;
+package com.app.travelapp;
 
 import org.junit.Test;
 
