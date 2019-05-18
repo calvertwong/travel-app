@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/register_header_tv"
-            style="@style/AuthenticationHeaderStyle"
+            style="@style/AuthnHeaderStyle"
             android:layout_marginTop="0dp"
             android:text="@string/create_an_account"
             app:layout_constraintBottom_toTopOf="@+id/register_first_name_til"
@@ -25,7 +25,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_first_name_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/first_name"
             app:layout_constraintBottom_toTopOf="@+id/register_last_name_til"
             app:layout_constraintTop_toBottomOf="@+id/register_header_tv"
@@ -40,7 +40,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_last_name_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/last_name"
             app:layout_constraintTop_toBottomOf="@+id/register_first_name_til"
             app:layout_constraintBottom_toTopOf="@+id/register_address_til"
@@ -55,7 +55,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_address_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/address"
             app:layout_constraintBottom_toTopOf="@+id/register_email_til"
             app:layout_constraintTop_toBottomOf="@+id/register_last_name_til"
@@ -70,7 +70,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_email_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/email"
             app:layout_constraintBottom_toTopOf="@+id/register_mobile_til"
             app:layout_constraintTop_toBottomOf="@+id/register_address_til"
@@ -85,7 +85,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_mobile_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/mobile"
             app:layout_constraintBottom_toTopOf="@+id/register_password_til"
             app:layout_constraintTop_toBottomOf="@+id/register_email_til"
@@ -100,7 +100,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_password_til"
-            style="@style/AuthenticationTextInputLayoutStyle"
+            style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/password"
             app:layout_constraintBottom_toTopOf="@+id/register_sign_up_btn"
             app:layout_constraintTop_toBottomOf="@+id/register_mobile_til"
@@ -115,24 +115,21 @@
 
         <android.support.design.button.MaterialButton
             android:id="@+id/register_sign_up_btn"
-            style="@style/AuthenticationButtonStyle"
+            style="@style/AuthnButtonStyle"
             android:text="@string/sign_up"
             app:layout_constraintTop_toBottomOf="@+id/register_password_til"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/register_agreement_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            style="@style/AuthMessageTextStyle"
             android:text="@string/by_pressing_sign_up_you_agree_with_the_terms_of_services_and_privacy_policy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_sign_up_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/register_sign_up_btn"
+            tools:ignore="MissingConstraints" />
 
         <android.support.design.button.MaterialButton
             android:id="@+id/register_already_have_an_account_btn"
-            style="@style/AuthenticationButtonStyle"
+            style="@style/AuthnButtonStyle"
             android:text="@string/already_have_an_account"
             app:layout_constraintTop_toBottomOf="@+id/register_agreement_tv"
             tools:ignore="MissingConstraints" />

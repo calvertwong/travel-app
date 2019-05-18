@@ -1,4 +1,4 @@
-package com.travelapp.srsstravel.authentication;
+package com.travelapp.srsstravel.Authn;
 
 
 import android.os.Bundle;
