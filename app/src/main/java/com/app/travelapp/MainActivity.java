@@ -1,9 +1,7 @@
-package com.travelapp.srsstravel;
+package com.app.travelapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -14,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import com.travelapp.srsstravel.Authn.RegisterFragment;
+import com.app.travelapp.authentication.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         init();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.drawer_layout, new RegisterFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegisterFragment()).commit();
 
     }
 
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

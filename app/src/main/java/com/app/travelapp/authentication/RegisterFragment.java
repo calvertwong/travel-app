@@ -1,4 +1,4 @@
-package com.travelapp.srsstravel.Authn;
+package com.app.travelapp.authentication;
 
 
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.travelapp.srsstravel.R;
+import com.app.travelapp.R;
+
+import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
@@ -27,8 +29,8 @@ public class RegisterFragment extends Fragment {
     }
 
     private void init() {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.sign_up));
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setTitle(getString(R.string.sign_up));
+        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 }

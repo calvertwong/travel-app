@@ -11,24 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/register_header_tv"
-            style="@style/AuthnHeaderStyle"
-            android:layout_marginTop="0dp"
-            android:text="@string/create_an_account"
-            app:layout_constraintBottom_toTopOf="@+id/register_first_name_til"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/register_first_name_til"
             style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/first_name"
             app:layout_constraintBottom_toTopOf="@+id/register_last_name_til"
-            app:layout_constraintTop_toBottomOf="@+id/register_header_tv"
+            app:layout_constraintTop_toBottomOf="parent"
             tools:ignore="MissingConstraints">
 
             <android.support.design.widget.TextInputEditText
@@ -42,8 +30,8 @@
             android:id="@+id/register_last_name_til"
             style="@style/AuthnTextInputLayoutStyle"
             android:hint="@string/last_name"
-            app:layout_constraintTop_toBottomOf="@+id/register_first_name_til"
             app:layout_constraintBottom_toTopOf="@+id/register_address_til"
+            app:layout_constraintTop_toBottomOf="@+id/register_first_name_til"
             tools:ignore="MissingConstraints">
 
             <android.support.design.widget.TextInputEditText
@@ -120,19 +108,27 @@
             app:layout_constraintTop_toBottomOf="@+id/register_password_til"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/register_agreement_tv"
-            style="@style/AuthMessageTextStyle"
-            android:text="@string/by_pressing_sign_up_you_agree_with_the_terms_of_services_and_privacy_policy"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/register_sign_up_btn"
-            tools:ignore="MissingConstraints" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-        <android.support.design.button.MaterialButton
-            android:id="@+id/register_already_have_an_account_btn"
-            style="@style/AuthnButtonStyle"
-            android:text="@string/already_have_an_account"
-            app:layout_constraintTop_toBottomOf="@+id/register_agreement_tv"
-            tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/register_alread_a_user_tv"
+                style="@style/AuthMessageTextStyle"
+                android:text="@string/already_a_user"
+                tools:ignore="MissingConstraints" />
 
+            <TextView
+                android:id="@+id/register_login_here_tv"
+                style="@style/AuthMessageTextStyle"
+                android:text="@string/login_here"
+                android:textColor="@android:color/holo_blue_bright"
+                app:layout_constraintStart_toEndOf="@+id/register_alread_a_user_tv"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

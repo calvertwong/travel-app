@@ -1,4 +1,4 @@
-package com.travelapp.srsstravel.network;
+package com.app.travelapp.network;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
