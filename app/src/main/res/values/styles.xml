@@ -21,13 +21,13 @@
     <style name="AuthenticationHeaderStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/appPink</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="AuthenticationTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="AuthenticationTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">5dp</item>
@@ -35,25 +35,16 @@
         <item name="layout_constraintStart_toStartOf">parent</item>
     </style>
 
-    <style name="AuthenticationFirstButtonStyle" parent="Widget.MaterialComponents.Button">
+    <style name="AuthenticationButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@color/appPink</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
     </style>
 
-    <style name="AuthenticationSecondButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@color/appPink</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="layout_constraintStart_toStartOf">parent</item>
-    </style>
 
     <!--whole app internal padding-->
     <style name="AppPadding">

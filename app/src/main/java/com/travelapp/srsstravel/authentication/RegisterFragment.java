@@ -27,7 +27,8 @@ public class RegisterFragment extends Fragment {
     }
 
     private void init() {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.sign_up));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }
