@@ -39,6 +39,7 @@
         <item name="android:layout_marginTop">0dp</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="errorEnabled">true</item>
     </style>
 
     <style name="AuthnButtonStyle" parent="Widget.MaterialComponents.Button">
@@ -57,6 +58,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="WidthMatchParentHeightWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
     <!--whole app internal padding-->
     <style name="AppPadding">

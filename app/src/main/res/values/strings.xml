@@ -14,8 +14,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_an_account">Create an Account</string>
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account">Already have an account?</string>
@@ -28,4 +26,10 @@
     <string name="password">Password</string>
     <string name="login_here">Login here.</string>
     <string name="already_a_user">Already a user?\u0020</string>
+    <string name="lowercase_first_name">first name</string>
+    <string name="lowercase_last_name">last name</string>
+    <string name="lowercase_address">address</string>
+    <string name="lowercase_email">email</string>
+    <string name="lowercase_mobile">mobile</string>
+    <string name="lowercase_password">password</string>
 </resources>

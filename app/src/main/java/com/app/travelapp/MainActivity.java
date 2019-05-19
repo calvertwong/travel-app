@@ -10,9 +10,8 @@ import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 
-import com.app.travelapp.authentication.RegisterFragment;
+import com.app.travelapp.authentication.register.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
