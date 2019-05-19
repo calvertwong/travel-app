@@ -31,6 +31,7 @@ public class ForgotPasswordFragment extends Fragment implements ForgotPasswordCo
 
         init();
         forgot_password_submit_btn.setOnClickListener(this);
+
         return view;
     }
     private void init(){

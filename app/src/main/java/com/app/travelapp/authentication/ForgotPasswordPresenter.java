@@ -35,7 +35,7 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
         if(TextUtils.isEmpty(email)){
             view.showInputError(forgot_password_email_til,"Please Enter Email");
         }
-        else if(!(Patterns.EMAIL_ADDRESS.matcher(email).matches()));
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches());
         {
             view.showInputError(forgot_password_email_til,"Please Enter a valid Email");
         }
@@ -48,7 +48,6 @@ public class ForgotPasswordPresenter implements ForgotPasswordContract.Presenter
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResult,this::handleError);
         view.proceedToLoginPage();
-
     }
     private void handleResult(List<ForgotPasswordResponse> response) {
         Log.e(TAG,"Response--" + response.get(0).getMsg());
