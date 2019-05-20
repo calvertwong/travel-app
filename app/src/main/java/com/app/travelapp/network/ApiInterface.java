@@ -2,7 +2,7 @@ package com.app.travelapp.network;
 
 import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.RegisterResponse;
-import com.app.travelapp.data.model.RegisterUser;
+//import com.app.travelapp.data.model.RegisterUser;
 
 import java.util.List;
 
