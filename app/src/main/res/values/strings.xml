@@ -28,4 +28,6 @@
     <string name="password">Password</string>
     <string name="login_here">Login here.</string>
     <string name="already_a_user">Already a user?\u0020</string>
+    <string name="submit">Submit</string>
+    <string name="enter_the_email_address_that_you_registered_with_and_we_will_send_you_the_instructions_to_reset_your_password">Enter the email address that you registered with and we will send you the instructions to reset your password</string>
 </resources>

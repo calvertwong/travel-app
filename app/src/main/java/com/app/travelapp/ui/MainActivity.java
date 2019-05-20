@@ -1,4 +1,4 @@
-package com.app.travelapp;
+package com.app.travelapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.app.travelapp.R;
 import com.app.travelapp.authentication.RegisterFragment;
+import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
+            //temp
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
 
