@@ -1,5 +1,6 @@
 package com.app.travelapp.network;
 
+import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.RegisterResponse;
 import com.app.travelapp.data.model.RegisterUser;
 
@@ -10,9 +11,10 @@ import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface ApiInstance {
+public interface ApiInterface {
 
     //@Field works with POST
     //@FormUrlEncoded
@@ -20,6 +22,7 @@ public interface ApiInstance {
     @POST("registration.php?")
     Observable<RegisterResponse> registerUser(@Field("firstname") String firstName, @Field("lastname") String lastname, @Field("address") String address, @Field("email") String email, @Field("mobile") String mobile, @Field("password") String password);
 
-//    @POST("registration.php?")
-//    Observable<RegisterUser> registerUser(@Body RegisterUser registerUser);
+    // get city response
+    @GET("city.php?")
+    Observable<CityResponse> getCity();
 }

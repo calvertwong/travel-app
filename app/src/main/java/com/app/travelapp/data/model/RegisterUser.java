@@ -1,6 +1,6 @@
 package com.app.travelapp.data.model;
 
-public class RegisterUser {
+class RegisterUser {
     private String registerFirstName, registerLastName, registerAddress, registerEmail, registerMobile, registerPassword;
 
     public RegisterUser(String registerFirstName, String registerLastName, String registerAddress, String registerEmail, String registerMobile, String registerPassword) {

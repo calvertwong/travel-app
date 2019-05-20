@@ -1,37 +1,35 @@
 package com.app.travelapp.authentication.register;
 
+import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.app.travelapp.data.DataRepository;
+import com.app.travelapp.data.DataSource;
+import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.RegisterResponse;
-import com.app.travelapp.data.model.RegisterUser;
-import com.app.travelapp.network.ApiInstance;
+import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
 
-import org.reactivestreams.Subscriber;
-
-import java.util.List;
-
 import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * Register presenter
  */
-public class RegisterPresenter implements RegisterContract.Presenter {
+public class RegisterPresenter implements RegisterContract.Presenter, DataSource.GetCityCallback {
     private static final String TAG = RegisterPresenter.class.getSimpleName();
-    private RegisterContract.View view;
-    private ApiInstance apiInstance = RetrofitInstance.getRetrofitInstance().create(ApiInstance.class);
+    private final RegisterContract.View view;
+    private final ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
+    private final DataSource dataSource;
 
     // constructor
-    RegisterPresenter(RegisterContract.View view) {
+    RegisterPresenter(RegisterContract.View view, Context context) {
         this.view = view;
+        dataSource = new DataRepository(context);
     }
 
     // triggered on lose focus and check for empty input
@@ -77,7 +75,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         } else if (mobile.length() == 10) {
             view.displayInputError(registerMobile, "Please enter valid mobile");
         } else {
-            Observable<RegisterResponse> registerObservable = apiInstance.registerUser(first_name, last_name, address, email, mobile, password);
+            Observable<RegisterResponse> registerObservable = apiInterface.registerUser(first_name, last_name, address, email, mobile, password);
             registerObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::handleResult, this::handleError);
@@ -94,8 +92,17 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         Log.d(TAG, "handleError: " +  throwable.getMessage());
     }
 
+    // This method is supposed to navigate register to login.
+    // Right now it is for testing mvp presenter and data by getting city
     @Override
     public void onLoginHereClick() {
-        view.navigateToLogin();
+//        view.navigateToLogin();
+        dataSource.getCity(this);                   // 1) To DataRepository. this: is the callback implemented in this class
+        Log.d(TAG, "onLoginHereClick: " + "click");
+    }
+
+    @Override
+    public void onCityLoaded(CityResponse cityResponse) {
+        Log.d(TAG, "onCityLoaded: " + cityResponse);
     }
 }

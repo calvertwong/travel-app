@@ -19,7 +19,7 @@ import com.app.travelapp.R;
 public class RegisterFragment extends Fragment implements RegisterContract.View, View.OnClickListener, View.OnFocusChangeListener {
     private static final String TAG = RegisterFragment.class.getSimpleName();
     private View view;
-    private TextView toolbar_title_tv, register_login_here_tv;
+    private TextView register_login_here_tv;
     private RegisterContract.Presenter register_presenter;
     private TextInputLayout register_first_name_til, register_last_name_til, register_address_til, register_email_til, register_mobile_til, register_password_til;
     private TextInputEditText register_first_name_tiet, register_last_name_tiet, register_address_tiet, register_email_tiet, register_mobile_tiet, register_password_tiet;
@@ -50,7 +50,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
     }
 
     private void init() {
-        toolbar_title_tv = getActivity().findViewById(R.id.toolbar_title_tv);
+        TextView toolbar_title_tv = getActivity().findViewById(R.id.toolbar_title_tv);
         toolbar_title_tv.setText(getString(R.string.sign_up));
         register_first_name_til = view.findViewById(R.id.register_first_name_til);
         register_last_name_til = view.findViewById(R.id.register_last_name_til);
@@ -67,7 +67,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
         register_login_here_tv = view.findViewById(R.id.register_login_here_tv);
         register_sign_up_btn = view.findViewById(R.id.register_sign_up_btn);
         // register presenter instance
-        register_presenter = new RegisterPresenter(this);
+        register_presenter = new RegisterPresenter(this, getContext());
     }
 
     // onClickListener
