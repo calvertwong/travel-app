@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.RegisterFragment;
@@ -56,8 +55,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
+            //temp
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).commit();
 
         } else if (id == R.id.nav_send) {
+
 
         }
 

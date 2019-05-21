@@ -1,5 +1,6 @@
 package com.app.travelapp.authentication.forgotpassword;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.travelapp.R;
@@ -23,6 +25,8 @@ public class ForgotPasswordFragment extends Fragment implements ForgotPasswordCo
     private TextInputLayout forgot_password_email_til;
     private TextInputEditText forgot_password_email_tiet;
     private MaterialButton forgot_password_submit_btn;
+    private TextView tv_toolbar_title;
+
     public ForgotPasswordFragment() {
     }
 
@@ -37,10 +41,13 @@ public class ForgotPasswordFragment extends Fragment implements ForgotPasswordCo
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         forgot_password_email_tiet = view.findViewById(R.id.forgot_password_email_tiet);
         forgot_password_email_til = view.findViewById(R.id.forgot_password_email_til);
         forgot_password_submit_btn = view.findViewById(R.id.forgot_password_submit_btn);
+        tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
+        tv_toolbar_title.setText("Forgot Password");
         forgot_password_presenter = new ForgotPasswordPresenter(this);
     }
 
