@@ -7,9 +7,11 @@ import android.util.Log;
 
 import com.app.travelapp.data.DataRepository;
 import com.app.travelapp.data.DataSource;
-import com.app.travelapp.data.model.CityResponse;
+import com.app.travelapp.data.model.CityItem;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -99,7 +101,7 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
     }
 
     @Override
-    public void onCityLoaded(CityResponse cityResponse) {
+    public void onCityLoaded(List<CityItem> cityResponse) {
         Log.d(TAG, "onCityLoaded: " + cityResponse);
     }
 }

@@ -17,11 +17,11 @@ import java.util.List;
 
 public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRecyclerViewAdapter.ViewHolder> {
     private static final String TAG = CityListRecyclerViewAdapter.class.getSimpleName();
-    private CityResponse cityResponseList;
+    private List<CityItem> cityResponseList;
     private Context context;
 
-    public CityListRecyclerViewAdapter(CityResponse cityResponseList, Context context) {
-        Log.d(TAG, "CityListRecyclerViewAdapter: " + cityResponseList);
+    public CityListRecyclerViewAdapter(List<CityItem> cityResponseList, Context context) {
+//        Log.d(TAG, "CityListRecyclerViewAdapter: " + cityResponseList);
         this.cityResponseList = cityResponseList;
         this.context = context;
     }
@@ -35,14 +35,15 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        CityItem cityItem = cityResponseList.getCity().get(position);
+        CityItem cityItem = cityResponseList.get(position);
 
-        Log.d("recyclerview", "onBindViewHolder: " + cityItem);
+        Log.d("recyclerview", "onBindViewHolder: " + cityItem.getCityname());
+        viewHolder.city_name_tv.setText(cityItem.getCityname());
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return cityResponseList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

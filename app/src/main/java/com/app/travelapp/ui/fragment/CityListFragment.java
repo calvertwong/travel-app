@@ -12,12 +12,9 @@ import com.app.travelapp.R;
 import com.app.travelapp.adapter.CityListRecyclerViewAdapter;
 import com.app.travelapp.data.DataRepository;
 import com.app.travelapp.data.DataSource;
-import com.app.travelapp.data.model.CityResponse;
-import com.app.travelapp.network.ApiInterface;
-import com.app.travelapp.network.RetrofitInstance;
+import com.app.travelapp.data.model.CityItem;
 
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
+import java.util.List;
 
 
 public class CityListFragment extends Fragment implements DataRepository.GetCityCallback {
@@ -49,7 +46,9 @@ public class CityListFragment extends Fragment implements DataRepository.GetCity
 
 
     @Override
-    public void onCityLoaded(CityResponse cityResponse) {
+    public void onCityLoaded(List<CityItem> cityResponse) {
+        city_list_rv.setLayoutManager(layoutManager);
         cityListRecyclerViewAdapter = new CityListRecyclerViewAdapter(cityResponse, getContext());
+        city_list_rv.setAdapter(cityListRecyclerViewAdapter);
     }
 }

@@ -35,7 +35,7 @@ public class CityRemoteDataSource implements DataSource {
     private void handleResult(CityResponse cityResponse) {
         Log.d(TAG, "handleCityResult: " + cityResponse.getCity().get(0));
         //step 5
-        callback.onCityLoaded(cityResponse);
+        callback.onCityLoaded(cityResponse.getCity());
     }
 
     //log error if couldn't get city data
