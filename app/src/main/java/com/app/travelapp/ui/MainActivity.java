@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.register.RegisterFragment;
 import com.app.travelapp.route.HomeFragment;
+import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
+            //temp
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
 

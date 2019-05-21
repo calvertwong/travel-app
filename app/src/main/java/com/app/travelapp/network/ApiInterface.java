@@ -3,6 +3,7 @@ package com.app.travelapp.network;
 import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.RegisterResponse;
 //import com.app.travelapp.data.model.RegisterUser;
+import com.app.travelapp.model.ForgotPasswordResponse;
 
 import java.util.List;
 
@@ -23,4 +24,7 @@ public interface ApiInterface {
     // get city response
     @GET("city.php?")
     Observable<CityResponse> getCity();
+
+    @GET("forgot_pass.php?")
+    Observable<List<ForgotPasswordResponse>> getPassword(@Query("mobile") String mobile);
 }
