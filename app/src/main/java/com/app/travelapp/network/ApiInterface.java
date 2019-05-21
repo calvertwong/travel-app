@@ -13,14 +13,12 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    //@Field works with POST
-    //@FormUrlEncoded
-    @FormUrlEncoded
     @POST("registration.php?")
-    Observable<RegisterResponse> registerUser(@Field("firstname") String firstName, @Field("lastname") String lastname, @Field("address") String address, @Field("email") String email, @Field("mobile") String mobile, @Field("password") String password);
+    Observable<String> registerUser(@Query("firstname") String firstName, @Query("lastname") String lastname, @Query("address") String address, @Query("email") String email, @Query("mobile") String mobile, @Query("password") String password);
 
     // get city response
     @GET("city.php?")

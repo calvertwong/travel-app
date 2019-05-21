@@ -9,7 +9,7 @@ public interface RegisterContract {
 
         void removeInputError(TextInputLayout textInputLayout);
 
-        void navigateToLogin();
+        void navigateToLogin(String msg);
     }
 
     interface Presenter{

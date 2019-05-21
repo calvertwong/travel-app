@@ -134,9 +134,9 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
 
     // Navigate to login fragment
     @Override
-    public void navigateToLogin() {
+    public void navigateToLogin(String msg) {
                 //                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
-        Toast.makeText(getContext(), "Go to login", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }

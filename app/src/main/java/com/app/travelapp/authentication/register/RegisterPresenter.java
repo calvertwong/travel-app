@@ -4,12 +4,10 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.app.travelapp.data.DataRepository;
 import com.app.travelapp.data.DataSource;
 import com.app.travelapp.data.model.CityResponse;
-import com.app.travelapp.data.model.RegisterResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
 
@@ -37,7 +35,6 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
     public void validateSingleRegisterInput(TextInputLayout textInputLayout, String nameOfInput) {
         if (TextUtils.isEmpty(textInputLayout.getEditText().getText())) {
             view.displayInputError(textInputLayout, "Please enter " + nameOfInput);
-            Log.d(TAG, "validateSingleRegisterInput: " + nameOfInput);
         } else {
             view.removeInputError(textInputLayout);
         }
@@ -75,17 +72,18 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
         } else if (mobile.length() == 10) {
             view.displayInputError(registerMobile, "Please enter valid mobile");
         } else {
-            Observable<RegisterResponse> registerObservable = apiInterface.registerUser(first_name, last_name, address, email, mobile, password);
+            Observable<String> registerObservable = apiInterface.registerUser(first_name, last_name, address, email, mobile, password);
             registerObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::handleResult, this::handleError);
-            view.navigateToLogin();
+            view.navigateToLogin("Register success");
         }
     }
 
-    private void handleResult(RegisterResponse response) {
+
+    private void handleResult(String response) {
         Log.d(TAG, "handleResult: " + response);
-        Log.d(TAG, "validateRegisterInputs: Success register");
+        view.navigateToLogin("Register success");
     }
 
     private void handleError(Throwable throwable) {
@@ -96,9 +94,8 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
     // Right now it is for testing mvp presenter and data by getting city
     @Override
     public void onLoginHereClick() {
-//        view.navigateToLogin();
+//        view.navigateToLogin("");
         dataSource.getCity(this);                   // 1) To DataRepository. this: is the callback implemented in this class
-        Log.d(TAG, "onLoginHereClick: " + "click");
     }
 
     @Override

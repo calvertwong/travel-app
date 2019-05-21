@@ -16,6 +16,10 @@ public class CityResponse{
 		return city;
 	}
 
+	public CityResponse(List<CityItem> city) {
+		this.city = city;
+	}
+
 	@Override
  	public String toString(){
 		return 

@@ -2,7 +2,7 @@ package com.app.travelapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-class CityItem{
+public class CityItem{
 
 	@SerializedName("cityname")
 	private String cityname;
@@ -35,6 +35,12 @@ class CityItem{
 
 	public String getCitylatitude(){
 		return citylatitude;
+	}
+
+	public CityItem(String cityname, String citylongtitude, String citylatitude) {
+		this.cityname = cityname;
+		this.citylongtitude = citylongtitude;
+		this.citylatitude = citylatitude;
 	}
 
 	@Override
