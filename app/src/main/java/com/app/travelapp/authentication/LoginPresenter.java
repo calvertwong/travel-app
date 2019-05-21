@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.app.travelapp.model.LogResponse;
 import com.app.travelapp.network.ApiInstance;
 import com.app.travelapp.network.RetrofitInstance;
 

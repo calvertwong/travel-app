@@ -1,4 +1,4 @@
-package com.app.travelapp.authentication;
+package com.app.travelapp.ui;
 
 
 import android.os.Bundle;

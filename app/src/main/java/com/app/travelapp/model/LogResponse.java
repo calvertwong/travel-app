@@ -1,4 +1,4 @@
-package com.app.travelapp.authentication;
+package com.app.travelapp.model;
 
 import com.google.gson.annotations.SerializedName;
 

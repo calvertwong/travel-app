@@ -1,6 +1,6 @@
 package com.app.travelapp.network;
 
-import com.app.travelapp.authentication.LogResponse;
+import com.app.travelapp.model.LogResponse;
 
 import java.util.List;
 
