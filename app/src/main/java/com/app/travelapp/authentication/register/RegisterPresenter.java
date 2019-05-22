@@ -78,26 +78,24 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
             registerObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::handleResult, this::handleError);
-            view.navigateToLogin("Register success");
         }
     }
 
 
     private void handleResult(String response) {
-        Log.d(TAG, "handleResult: " + response);
+        Log.d(TAG, "handleRegisterResult: " + response);
         view.navigateToLogin("Register success");
     }
 
     private void handleError(Throwable throwable) {
-        Log.d(TAG, "handleError: " +  throwable.getMessage());
+        Log.d(TAG, "handleRegisterError: " +  throwable.getMessage());
     }
 
     // This method is supposed to navigate register to login.
     // Right now it is for testing mvp presenter and data by getting city
     @Override
     public void onLoginHereClick() {
-//        view.navigateToLogin("");
-        dataSource.getCity(this);                   // 1) To DataRepository. this: is the callback implemented in this class
+        view.navigateToLogin("");
     }
 
     @Override

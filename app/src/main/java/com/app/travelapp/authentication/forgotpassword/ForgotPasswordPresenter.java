@@ -5,9 +5,8 @@ import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
-import android.widget.Toast;
 
-import com.app.travelapp.model.ForgotPasswordResponse;
+import com.app.travelapp.data.model.ForgotPasswordResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
 import java.util.List;

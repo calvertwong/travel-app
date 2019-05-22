@@ -1,9 +1,10 @@
-package com.app.travelapp.route;
+package com.app.travelapp.route.home;
 
 
 import android.os.Bundle;
 import android.support.design.button.MaterialButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.travelapp.R;
-import com.app.travelapp.ui.fragment.CalenderFragment;
-import com.app.travelapp.ui.fragment.CityListFragment;
+import com.app.travelapp.route.calendar.CalendarFragment;
+import com.app.travelapp.route.citylist.CityListFragment;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, HomeContract.View {
     private static final String TAG = HomeFragment.class.getSimpleName();
     private View view;
     private TextView origin_tv, destination_tv, calendar_day_tv, calendar_day_name_tv, calendar_month_tv, calendar_year_tv;
     private MaterialButton home_today_btn, home_tomorrow_btn, search_bus_btn;
     private LinearLayout journey_date_ll;
+    private HomePresenter home_presenter;
 
     public HomeFragment() {
     }
@@ -55,6 +57,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         home_tomorrow_btn = view.findViewById(R.id.home_tomorrow_btn);
         search_bus_btn = view.findViewById(R.id.search_bus_btn);
         journey_date_ll = view.findViewById(R.id.journey_date_ll);
+
+        home_presenter = new HomePresenter(this, getContext());
+        setOriginDestinationText();
     }
 
     @Override
@@ -63,12 +68,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         switch (id) {
             case R.id.origin_tv:
+                CityListFragment cityListFragment = new CityListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("origin", "origin");
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
+                break;
             case R.id.destination_tv:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new CityListFragment()).addToBackStack(null).commit();
+                cityListFragment = new CityListFragment();
+                bundle = new Bundle();
+                bundle.putString("destination", "destination");
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
 
             case R.id.journey_date_ll:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalenderFragment()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.home_today_btn:
@@ -79,6 +92,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             case R.id.search_bus_btn:
                 break;
+        }
+    }
+
+    public void setOriginDestinationText() {
+        if(getArguments() != null){
+            Bundle bundle = getArguments();
+            origin_tv.setText(bundle.getString("origin"));
+            destination_tv.setText(bundle.getString("destination"));
         }
     }
 }

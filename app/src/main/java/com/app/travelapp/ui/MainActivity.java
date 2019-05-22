@@ -12,8 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.app.travelapp.R;
+import com.app.travelapp.authentication.login.LoginFragment;
 import com.app.travelapp.authentication.register.RegisterFragment;
-import com.app.travelapp.route.HomeFragment;
+import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
         } else if (id == R.id.nav_send) {
 
         }

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="login_forgot_password_r_tv" type="id">forget passwrd?</item>
+    <!--<item name="login_forgot_password_r_tv" type="id">forget passwrd?</item>-->
 </resources>

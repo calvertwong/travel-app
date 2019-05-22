@@ -1,4 +1,4 @@
-package com.app.travelapp.ui.fragment;
+package com.app.travelapp.route.citylist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +23,7 @@ public class CityListFragment extends Fragment implements DataRepository.GetCity
     private RecyclerView.LayoutManager layoutManager;
     private View view;
     private DataSource dataSource;
+    private Bundle bundle;
 
     public CityListFragment() {
     }
@@ -41,6 +42,7 @@ public class CityListFragment extends Fragment implements DataRepository.GetCity
         city_list_rv = view.findViewById(R.id.city_list_rv);
         layoutManager = new LinearLayoutManager(getContext());
         dataSource = new DataRepository(getContext());
+        bundle = getArguments();
         dataSource.getCity(this);
     }
 
@@ -48,7 +50,7 @@ public class CityListFragment extends Fragment implements DataRepository.GetCity
     @Override
     public void onCityLoaded(List<CityItem> cityResponse) {
         city_list_rv.setLayoutManager(layoutManager);
-        cityListRecyclerViewAdapter = new CityListRecyclerViewAdapter(cityResponse, getContext());
+        cityListRecyclerViewAdapter = new CityListRecyclerViewAdapter(cityResponse, getContext(), bundle);
         city_list_rv.setAdapter(cityListRecyclerViewAdapter);
     }
 }
