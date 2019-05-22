@@ -33,8 +33,6 @@
     <string name="lowercase_mobile">mobile</string>
     <string name="lowercase_password">password</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="from">From</string>
     <string name="origin">Origin</string>
     <string name="to">To</string>
@@ -45,4 +43,12 @@
     <string name="tomorrow">Tomorrow</string>
     <string name="submit">Submit</string>
     <string name="enter_the_email_address_that_you_registered_with_and_we_will_send_you_the_instructions_to_reset_your_password">Enter the email address that you registered with and we will send you the instructions to reset your password</string>
+    <string name="email_phone_no">Email/Phone No.</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="create_new_account_hehe">CREATE NEW ACCOUNT HEHE</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="don_t_have_account">don\'t have account</string>
+    <string name="continue_text">CONTINUE</string>
+    <string name="pnr_number">PNR Number</string>
+    <string name="date">date</string>
 </resources>

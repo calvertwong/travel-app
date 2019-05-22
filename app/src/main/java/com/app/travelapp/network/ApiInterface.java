@@ -4,11 +4,13 @@ import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.RegisterResponse;
 //import com.app.travelapp.data.model.RegisterUser;
 import com.app.travelapp.model.ForgotPasswordResponse;
+import com.app.travelapp.model.LogResponse;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -27,4 +29,10 @@ public interface ApiInterface {
 
     @GET("forgot_pass.php?")
     Observable<List<ForgotPasswordResponse>> getPassword(@Query("mobile") String mobile);
+
+    @FormUrlEncoded
+    @POST("login.php?")
+    Call<List<LogResponse>> setUserData(
+            @Field("mobile") String mobile,
+            @Field("password") String password);
 }
