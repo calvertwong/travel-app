@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.app.travelapp.model.LogResponse;
-import com.app.travelapp.network.ApiInstance;
+import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class LoginPresenter implements LoginContract.Presenter{
            // Toast.makeText(context, "please write your password", Toast.LENGTH_SHORT).show();
             view.showInputError(login_password_til,"input your mobile");
         }else {
-            ApiInstance apiIterface = RetrofitInstance.getRetrofitInstance().create(ApiInstance.class);
+            ApiInterface apiIterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
             Call<List<LogResponse>> call = apiIterface.setUserData(mobile,password);
 
@@ -82,6 +82,7 @@ public class LoginPresenter implements LoginContract.Presenter{
                         }
                     }
                 }
+
                 @Override
                 public void onFailure(Call<List<LogResponse>> call, Throwable t) {
                     Log.e(TAG, "onResponse: "+t.getMessage().toString());

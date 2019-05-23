@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShowBusDetailsFragment()).addToBackStack(null).commit();
+
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
 
         }
 
