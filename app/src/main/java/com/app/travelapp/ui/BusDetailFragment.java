@@ -18,8 +18,7 @@ import com.app.travelapp.R;
 import com.app.travelapp.adapter.BusDetailAdapter;
 import com.app.travelapp.data.BusDetailDataRepository;
 import com.app.travelapp.data.BusDetailDataSource;
-import com.app.travelapp.model.BusDetailResponse;
-import com.app.travelapp.model.BusInformationItem;
+import com.app.travelapp.data.model.BusInformationItem;
 
 public class BusDetailFragment extends Fragment implements BusDetailDataRepository.GetBusDetailCallback {
     private static final String TAG = BusDetailFragment.class.getSimpleName();
@@ -52,18 +51,19 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
         currentDate = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
         textViewCurrentDate = view.findViewById(R.id.textViewCurrentDate);
+        recyclerView = view.findViewById(R.id.recyclerViewBusDetail);
         layoutManager = new LinearLayoutManager(getContext());
         busDetailDataSource = new BusDetailDataRepository(getContext());
         busDetailDataSource.getBusDetail(this);
 
     }
-    
 
     @Override
-    public void onBusDetailLoaded(BusDetailResponse busDetailResponse) {
+    public void onBusDetailLoaded(List<BusInformationItem> busDetailResponse) {
         recyclerView.setLayoutManager(layoutManager);
-        //busDetailAdapter = new BusDetailAdapter(List<busDetailResponse>,getContext());
+        busDetailAdapter = new BusDetailAdapter(busDetailResponse,getContext());
         recyclerView.setAdapter(busDetailAdapter);
 
     }
 }
+

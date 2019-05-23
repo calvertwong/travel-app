@@ -1,4 +1,4 @@
-package com.app.travelapp.model;
+package com.app.travelapp.data.model;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

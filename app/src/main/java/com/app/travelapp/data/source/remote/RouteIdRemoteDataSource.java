@@ -3,7 +3,7 @@ package com.app.travelapp.data.source.remote;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import com.app.travelapp.data.RouteIdDataSource;
-import com.app.travelapp.model.RouteResponse;
+import com.app.travelapp.data.model.RouteResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
 import io.reactivex.Observable;

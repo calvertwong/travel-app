@@ -1,11 +1,12 @@
 package com.app.travelapp.network;
 
+import com.app.travelapp.data.model.BusInformationItem;
 import com.app.travelapp.data.model.CityResponse;
 //import com.app.travelapp.data.model.RegisterUser;
 import com.app.travelapp.data.model.ForgotPasswordResponse;
 import com.app.travelapp.data.model.LoginResponse;
-import com.app.travelapp.model.BusDetailResponse;
-import com.app.travelapp.model.RouteResponse;
+import com.app.travelapp.data.model.BusDetailResponse;
+import com.app.travelapp.data.model.RouteResponse;
 
 import java.util.List;
 
@@ -43,7 +44,9 @@ public interface ApiInterface {
                                        @Query("route-endpoint-longiude") String endPointLong);
 
     @GET("businfo.php?")
-    Observable<BusDetailResponse> getBusDetail(@Query("id") String routeId);
+    //Observable<BusDetailResponse> getBusDetail(@Query("id") String routeId);
+    //Observable<List<BusDetailResponse>> getBusDetail(@Query("id") String routeId);
+    Observable<List<BusInformationItem>> getBusDetail(@Query("id") String routeId);
 
 
 }

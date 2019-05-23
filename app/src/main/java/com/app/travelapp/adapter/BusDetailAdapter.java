@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.travelapp.R;
-import com.app.travelapp.model.BusInformationItem;
+import com.app.travelapp.data.model.BusInformationItem;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewBusDetailTime,textViewBusDetailType,textViewBusDetailFare,textViewBusDetailAvailableSeats;
+        TextView textViewBusDetailTime,textViewBusDetailType,textViewBusDetailFare;
 
 
         public MyViewHolder(@NonNull View itemView) {

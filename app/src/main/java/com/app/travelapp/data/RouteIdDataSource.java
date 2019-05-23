@@ -1,6 +1,6 @@
 package com.app.travelapp.data;
 
-import com.app.travelapp.model.RouteResponse;
+import com.app.travelapp.data.model.RouteResponse;
 
 public interface RouteIdDataSource {
     interface GetRouteCallback {
