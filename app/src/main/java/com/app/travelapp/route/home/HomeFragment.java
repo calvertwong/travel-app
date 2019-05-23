@@ -64,13 +64,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         journey_date_ll = view.findViewById(R.id.journey_date_ll);
 
         home_presenter = new HomePresenter(this);
-        bundle = getArguments();
-        if(bundle == null){
-            Toast.makeText(getContext(), "bundle null", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getContext(), "not null", Toast.LENGTH_SHORT).show();
-            setTexts(bundle);
-        }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String origin = preferences.getString("origin", "");
@@ -78,18 +71,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
 
         origin_tv.setText(origin);
         destination_tv.setText(destination);
-        Log.d(TAG, "init: origin   " + origin);
-        Log.d(TAG, "init: destination   " + destination);
-
-    }
-
-    private void setTexts(Bundle bundle) {
-        if(bundle.getString("origin") != null){
-            origin_tv.setText(bundle.getString("origin"));
-        }
-        if(bundle.getString("destination") != null){
-            destination_tv.setText(bundle.getString("destination"));
-        }
     }
 
     @Override
@@ -98,16 +79,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
 
         switch (id) {
             case R.id.origin_tv:
+                //need bundle to tell sharedpreferences which one is requesting the location, origin or destination
                 CityListFragment cityListFragment = new CityListFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("origin", "origin");
+                bundle.putString("origin", getString(R.string.origin));
                 cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
             case R.id.destination_tv:
                 cityListFragment = new CityListFragment();
                 bundle = new Bundle();
-                bundle.putString("destination", "destination");
+                bundle.putString("destination", getString(R.string.destination));
                 cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
@@ -126,11 +108,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 break;
         }
     }
-
-    public void setOriginDestinationText(String caller, String city_name) {
-//            origin_tv.setText(bundle.getString("origin"));
-//            destination_tv.setText(bundle.getString("destination"));
-            Log.d(TAG, "setOriginDestinationText: " + caller + "----" + city_name);
-    }
-
 }
