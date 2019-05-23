@@ -2,7 +2,7 @@ package com.app.travelapp.data.source.remote;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
-import com.app.travelapp.data.DataSource;
+import com.app.travelapp.data.RouteIdDataSource;
 import com.app.travelapp.model.RouteResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
@@ -10,18 +10,18 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class RemoteDataSource implements DataSource {
-    private static final String TAG = RemoteDataSource.class.getSimpleName();
-    private GetRouteCallback routeCallback;
+public class RouteIdRemoteDataSource implements RouteIdDataSource {
+    private static final String TAG = RouteIdRemoteDataSource.class.getSimpleName();
+    private RouteIdDataSource.GetRouteCallback routeCallback;
 
 
-    public RemoteDataSource() {
+    public RouteIdRemoteDataSource() {
     }
 
     //4
     @SuppressLint("CheckResult")
     @Override
-    public void getRoute(GetRouteCallback routeCallback) {
+    public void getRoute(RouteIdDataSource.GetRouteCallback routeCallback) {
         this.routeCallback = routeCallback;
 
         ///remove hardcoded latlong values
@@ -35,6 +35,7 @@ public class RemoteDataSource implements DataSource {
                 .subscribe(this::handleResult,this::handleError);
 
     }
+
 
 
     private void handleResult(RouteResponse routeResponse) {

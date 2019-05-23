@@ -6,17 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.app.travelapp.R;
-import com.app.travelapp.model.BusinformationItem;
+import com.app.travelapp.model.BusInformationItem;
 
 import java.util.List;
 
 public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyViewHolder> {
-    private List<BusinformationItem> busInfoItemList;
+    private List<BusInformationItem> busInfoItemList;
     private Context context;
 
-    public BusDetailAdapter(List<BusinformationItem> businfoItemList, Context context) {
+    public BusDetailAdapter(List<BusInformationItem> businfoItemList, Context context) {
         this.busInfoItemList = businfoItemList;
         this.context = context;
     }
@@ -31,6 +32,10 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull BusDetailAdapter.MyViewHolder myViewHolder, int i) {
+        BusInformationItem businformationItem = busInfoItemList.get(i);
+        myViewHolder.textViewBusDetailTime.setText(businformationItem.getBusdeparturetime());
+        myViewHolder.textViewBusDetailType.setText(businformationItem.getBustype());
+        myViewHolder.textViewBusDetailFare.setText(businformationItem.getFare());
 
     }
 
@@ -40,10 +45,15 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView textViewBusDetailTime,textViewBusDetailType,textViewBusDetailFare,textViewBusDetailAvailableSeats;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            textViewBusDetailTime =itemView.findViewById(R.id.textViewBusDetailTime);
+            textViewBusDetailType =itemView.findViewById(R.id.textViewBusDetailType);
+            textViewBusDetailFare =itemView.findViewById(R.id.textViewBusDetailFare);
+            //textViewBusDetailAvailableSeats =itemView.findViewById(R.id.textViewBusDetailAvailableSeats);
         }
     }
 }

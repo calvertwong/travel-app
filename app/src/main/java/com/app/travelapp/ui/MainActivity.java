@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).commit();
 
         } else if (id == R.id.nav_send) {
+            //temp
+
 
 
         }
