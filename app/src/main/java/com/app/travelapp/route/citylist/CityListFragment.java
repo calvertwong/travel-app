@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,15 @@ import com.app.travelapp.data.model.CityItem;
 import java.util.List;
 
 
-public class CityListFragment extends Fragment implements DataRepository.GetCityCallback {
+public class CityListFragment extends Fragment implements CityListContract.View {
+    private static final String TAG = CityListFragment.class.getSimpleName();
     private RecyclerView city_list_rv;
-    private CityListRecyclerViewAdapter cityListRecyclerViewAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private CityListRecyclerViewAdapter city_list_rv_adapter;
+    private RecyclerView.LayoutManager layout_manager;
     private View view;
-    private DataSource dataSource;
+    private DataSource data_source;
     private Bundle bundle;
+    private CityListPresenter city_list_presenter;
 
     public CityListFragment() {
     }
@@ -40,17 +43,17 @@ public class CityListFragment extends Fragment implements DataRepository.GetCity
 
     private void init() {
         city_list_rv = view.findViewById(R.id.city_list_rv);
-        layoutManager = new LinearLayoutManager(getContext());
-        dataSource = new DataRepository(getContext());
+        layout_manager = new LinearLayoutManager(getContext());
+        data_source = new DataRepository(getContext());
         bundle = getArguments();
-        dataSource.getCity(this);
+        city_list_presenter = new CityListPresenter(this);
+        city_list_presenter.getCityFromSource(data_source);
     }
 
-
     @Override
-    public void onCityLoaded(List<CityItem> cityResponse) {
-        city_list_rv.setLayoutManager(layoutManager);
-        cityListRecyclerViewAdapter = new CityListRecyclerViewAdapter(cityResponse, getContext(), bundle);
-        city_list_rv.setAdapter(cityListRecyclerViewAdapter);
+    public void setupCityListRV(List<CityItem> cityItems) {
+        city_list_rv.setLayoutManager(layout_manager);
+        city_list_rv_adapter = new CityListRecyclerViewAdapter(cityItems, getContext(), bundle);
+        city_list_rv.setAdapter(city_list_rv_adapter);
     }
 }

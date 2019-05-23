@@ -1,7 +1,10 @@
 package com.app.travelapp.route.home;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.button.MaterialButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.travelapp.R;
 import com.app.travelapp.route.calendar.CalendarFragment;
@@ -22,6 +26,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
     private MaterialButton home_today_btn, home_tomorrow_btn, search_bus_btn;
     private LinearLayout journey_date_ll;
     private HomePresenter home_presenter;
+    private Bundle bundle;
 
     public HomeFragment() {
     }
@@ -58,8 +63,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         search_bus_btn = view.findViewById(R.id.search_bus_btn);
         journey_date_ll = view.findViewById(R.id.journey_date_ll);
 
-        home_presenter = new HomePresenter(this, getContext());
-        setOriginDestinationText();
+        home_presenter = new HomePresenter(this);
+        bundle = getArguments();
+        if(bundle == null){
+            Toast.makeText(getContext(), "bundle null", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getContext(), "not null", Toast.LENGTH_SHORT).show();
+            setTexts(bundle);
+        }
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String origin = preferences.getString("origin", "");
+        String destination = preferences.getString("destination", "");
+
+        origin_tv.setText(origin);
+        destination_tv.setText(destination);
+        Log.d(TAG, "init: origin   " + origin);
+        Log.d(TAG, "init: destination   " + destination);
+
+    }
+
+    private void setTexts(Bundle bundle) {
+        if(bundle.getString("origin") != null){
+            origin_tv.setText(bundle.getString("origin"));
+        }
+        if(bundle.getString("destination") != null){
+            destination_tv.setText(bundle.getString("destination"));
+        }
     }
 
     @Override
@@ -71,12 +101,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 CityListFragment cityListFragment = new CityListFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("origin", "origin");
+                cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
             case R.id.destination_tv:
                 cityListFragment = new CityListFragment();
                 bundle = new Bundle();
                 bundle.putString("destination", "destination");
+                cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
 
@@ -95,11 +127,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         }
     }
 
-    public void setOriginDestinationText() {
-        if(getArguments() != null){
-            Bundle bundle = getArguments();
-            origin_tv.setText(bundle.getString("origin"));
-            destination_tv.setText(bundle.getString("destination"));
-        }
+    public void setOriginDestinationText(String caller, String city_name) {
+//            origin_tv.setText(bundle.getString("origin"));
+//            destination_tv.setText(bundle.getString("destination"));
+            Log.d(TAG, "setOriginDestinationText: " + caller + "----" + city_name);
     }
+
 }
