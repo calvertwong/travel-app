@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.app.travelapp.R;
 import com.app.travelapp.data.model.CityItem;
 import com.app.travelapp.data.model.CityResponse;
+import com.app.travelapp.route.citylist.CityListContract;
+import com.app.travelapp.route.citylist.CityListPresenter;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.route.home.HomePresenter;
 
@@ -27,18 +29,16 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
     private List<CityItem> city_items_list;
     private Context context;
     private String caller;
+    private CityListContract.Presenter city_list_presenter;
 
     public CityListRecyclerViewAdapter(List<CityItem> city_items_list, Context context, Bundle bundle) {
-        Log.d(TAG, "CityListRecyclerViewAdapter: " + city_items_list);
         this.city_items_list = city_items_list;
         this.context = context;
         if (bundle != null) {
-            Log.d(TAG, "origin adapter: " + bundle.getString("origin"));
-            Log.d(TAG, "destination adapter: " + bundle.getString("destination"));
             if (bundle.getString("origin") != null) {
-                caller = bundle.getString("origin");
+                caller = context.getString(R.string.origin);
             } else if (bundle.getString("destination") != null) {
-                caller = bundle.getString("destination");
+                caller = context.getString(R.string.destination);
             }
         }
     }
@@ -87,9 +87,6 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(caller, city_name);
             editor.apply();
-//            Log.d(TAG, "onClick: " + caller + "------" + city_name);
-//            HomePresenter home_presenter = new HomePresenter();
-//            home_presenter.receiveOriginDestinationFromCityListRecyclerView(caller, city_name);
         }
     }
 }
