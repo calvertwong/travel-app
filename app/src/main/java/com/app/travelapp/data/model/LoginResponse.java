@@ -1,4 +1,4 @@
-package com.app.travelapp.model;
+package com.app.travelapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-public class LogResponse {
+public class LoginResponse {
     @SerializedName("msg")
 
     private String msg;
@@ -30,7 +30,7 @@ public class LogResponse {
 
     private String appapikey;
 
-    public LogResponse(String msg, String userid, String firstname, String lastname, String email, String mobile, String appapikey) {
+    public LoginResponse(String msg, String userid, String firstname, String lastname, String email, String mobile, String appapikey) {
         this.msg = msg;
         this.userid = userid;
         this.firstname = firstname;

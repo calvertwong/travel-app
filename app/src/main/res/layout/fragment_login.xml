@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.RegisterFragment">
+    tools:context=".authentication.login.LoginFragment">
 
     <android.support.constraint.ConstraintLayout
         style="@style/AppPadding"
@@ -47,7 +47,7 @@
 
 
         <android.support.design.button.MaterialButton
-            android:id="@+id/login_create_accunt_btn"
+            android:id="@+id/login_sign_in_btn"
             style="@style/AuthnButtonStyle"
             android:text="SIGN IN"
             app:layout_constraintTop_toBottomOf="@+id/login_password_til"
@@ -59,27 +59,29 @@
             android:id="@+id/login_forgot_password_r_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="@string/forgot_password"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="214dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_sign_in_btn" />
 
         <TextView
             android:id="@+id/login_no_account_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="@string/don_t_have_account"
-            tools:layout_editor_absoluteX="120dp"
-            tools:layout_editor_absoluteY="263dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_forgot_password_r_tv" />
 
         <android.support.design.button.MaterialButton
-            android:id="@+id/login_sign_in_btn"
+            android:id="@+id/login_create_accunt_btn"
             style="@style/AuthnButtonStyle"
-            android:layout_marginTop="128dp"
-            android:text="SIGN IN"
+            android:text="Create Account"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.733"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_create_accunt_btn"
+            app:layout_constraintTop_toBottomOf="@+id/login_no_account_tv"
             tools:ignore="MissingConstraints" />
 
 

@@ -10,10 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 
 import com.app.travelapp.R;
-import com.app.travelapp.authentication.RegisterFragment;
+import com.app.travelapp.authentication.login.LoginFragment;
+import com.app.travelapp.authentication.register.RegisterFragment;
+import com.app.travelapp.route.home.HomeFragment;
+import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,14 +40,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShowBusDetailsFragment()).addToBackStack(null).commit();
@@ -53,9 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
+            //temp
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
         } else if (id == R.id.nav_send) {
 
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void init() {
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
