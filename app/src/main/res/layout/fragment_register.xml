@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.RegisterFragment">
+    tools:context=".authentication.register.RegisterFragment">
 
     <android.support.constraint.ConstraintLayout
         style="@style/AppPadding"
@@ -21,8 +21,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_first_name_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -36,8 +36,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_last_name_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -51,8 +51,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_address_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -66,8 +66,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_email_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="textEmailAddress" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +81,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_mobile_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="phone" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -96,8 +96,8 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/register_password_tiet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/WidthMatchParentHeightWrapContent"
+                android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -109,11 +109,11 @@
             tools:ignore="MissingConstraints" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/register_sign_up_btn"
+            style="@style/WidthMatchParentHeightWrapContent"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/register_sign_up_btn"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/register_alread_a_user_tv"
