@@ -71,7 +71,7 @@ public class RegisterPresenter implements RegisterContract.Presenter, DataSource
             view.displayInputError(registerPassword, "Please enter password");
         } else if (!email.matches(emailPattern)) {
             view.displayInputError(registerEmail, "Please enter a valid email");
-        } else if (mobile.length() == 10) {
+        } else if (mobile.length() != 10) {
             view.displayInputError(registerMobile, "Please enter valid mobile");
         } else {
             Observable<String> registerObservable = apiInterface.registerUser(first_name, last_name, address, email, mobile, password);

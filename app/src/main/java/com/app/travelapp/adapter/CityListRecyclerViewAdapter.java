@@ -36,9 +36,9 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
         this.context = context;
         if (bundle != null) {
             if (bundle.getString("origin") != null) {
-                caller = context.getString(R.string.origin);
+                caller = context.getString(R.string.lowercase_origin);
             } else if (bundle.getString("destination") != null) {
-                caller = context.getString(R.string.destination);
+                caller = context.getString(R.string.lowercase_destination);
             }
         }
     }

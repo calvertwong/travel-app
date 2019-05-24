@@ -1,6 +1,7 @@
 package com.app.travelapp.ui;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,14 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import com.app.travelapp.R;
 import com.app.travelapp.adapter.BusDetailAdapter;
 import com.app.travelapp.data.BusDetailDataRepository;
 import com.app.travelapp.data.BusDetailDataSource;
+import com.app.travelapp.data.RouteIdDataRepository;
+import com.app.travelapp.data.RouteIdDataSource;
 import com.app.travelapp.data.model.BusInformationItem;
 
 public class BusDetailFragment extends Fragment implements BusDetailDataRepository.GetBusDetailCallback {
@@ -33,6 +38,8 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
     private RecyclerView.LayoutManager layoutManager;
     private BusDetailAdapter busDetailAdapter;
     private BusDetailDataSource busDetailDataSource;
+    private RouteIdDataSource routeIdDataSource;
+    private ProgressDialog progressDialog;
 
     public BusDetailFragment() {
     }
@@ -41,7 +48,7 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_bus_detail,container,false);
+        view = inflater.inflate(R.layout.fragment_bus_detail, container, false);
 
         init();
         textViewCurrentDate.setText(currentDate);
@@ -55,21 +62,31 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         textViewCurrentDate = view.findViewById(R.id.textViewCurrentDate);
         recyclerView = view.findViewById(R.id.recyclerViewBusDetail);
         layoutManager = new LinearLayoutManager(getContext());
-        busDetailDataSource = new BusDetailDataRepository(getContext());
-        busDetailDataSource.getBusDetail(this);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String origin = preferences.getString("origin", "");
         String destination = preferences.getString("destination", "");
         tv_toolbar_title.setText(origin + " to " + destination);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Getting routes");
+        progressDialog.show();
 
+        String startLat = preferences.getString("startLat", "");
+        String startLong = preferences.getString("startLong", "");
+        String endLat = preferences.getString("endLat", "");
+        String endLong = preferences.getString("endLong", "");
+//        routeIdDataSource = new RouteIdDataRepository(getContext(), startLat, startLong, endLat, endLong);
+        routeIdDataSource.getRoute(this);
+
+        busDetailDataSource = new BusDetailDataRepository(getContext());
+        busDetailDataSource.getBusDetail(this);
     }
 
     @Override
     public void onBusDetailLoaded(List<BusInformationItem> busDetailResponse) {
+        progressDialog.dismiss();
         recyclerView.setLayoutManager(layoutManager);
-        busDetailAdapter = new BusDetailAdapter(busDetailResponse,getContext());
+        busDetailAdapter = new BusDetailAdapter(busDetailResponse, getContext());
         recyclerView.setAdapter(busDetailAdapter);
-
     }
 }
 
