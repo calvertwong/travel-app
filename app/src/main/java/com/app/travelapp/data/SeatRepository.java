@@ -8,13 +8,25 @@ import android.util.Log;
 import com.app.travelapp.data.source.remote.CityRemoteDataSource;
 import com.app.travelapp.data.source.remote.SeatRemoteDataSource;
 
-public class DataRepository implements DataSource {
-    private DataSource remoteCityDataSource;
+public class SeatRepository implements SeatSource {
+    private SeatSource remoteSeatDataSource;
     private boolean isNetAvailable;
-    private static final String TAG = DataRepository.class.getSimpleName();
+    private static final String TAG = SeatRepository.class.getSimpleName();
+
+    @Override
+    public void getSeat(SeatSource.GetSeatCallBack callBack) {
+        if (isNetAvailable) {
+            remoteSeatDataSource.getSeat(callBack);
+            Log.d(TAG, "get seat --" + callBack.toString());
+        } else {
+            Log.d(TAG, "get seat-- " + "No Internet Connection");
+        }
 
 
-    public DataRepository(Context context) {
+    }
+
+
+    public SeatRepository(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         assert cm != null;
@@ -22,26 +34,9 @@ public class DataRepository implements DataSource {
         isNetAvailable = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
 
-
+        remoteSeatDataSource = (SeatSource) new SeatRemoteDataSource();
         // get city data from API
-        remoteCityDataSource = new CityRemoteDataSource();
-    }
-
-
-
-    @Override
-    public void getCity(GetCityCallback callback) {
-        if (isNetAvailable) {
-            remoteCityDataSource.getCity(callback);
-            Log.d(TAG, "getCity: " + "internet");
-        } else {
-            Log.d(TAG, "getCity: " + "no internet");
-        }
 
     }
 
 }
-
-
-
-

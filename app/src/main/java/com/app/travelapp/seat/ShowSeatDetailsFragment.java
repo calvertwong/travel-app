@@ -1,4 +1,4 @@
-package com.app.travelapp.ui;
+package com.app.travelapp.seat;
 
 
 import android.os.Bundle;
@@ -9,19 +9,17 @@ import android.view.ViewGroup;
 
 
 import com.app.travelapp.R;
-import com.app.travelapp.authentication.GetSeatsContract;
-import com.app.travelapp.authentication.LoginContract;
-import com.app.travelapp.data.DataSource;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShowBusDetailsFragment extends Fragment implements GetSeatsContract.View {
+public class ShowSeatDetailsFragment extends Fragment implements GetSeatsContract.View {
     View view;
-    private ShowBusDetailsPresenter presenter;
+    private ShowSeatDetailsPresenter presenter;
 
 
-    public ShowBusDetailsFragment() {
+    public ShowSeatDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +29,7 @@ public class ShowBusDetailsFragment extends Fragment implements GetSeatsContract
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_show_bus_details, container, false);
-        presenter = new ShowBusDetailsPresenter(this, getContext());
+        presenter = new ShowSeatDetailsPresenter(this, getContext());
         presenter.getSeatDetails();
         return view;
 

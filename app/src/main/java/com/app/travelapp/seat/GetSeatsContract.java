@@ -1,8 +1,8 @@
-package com.app.travelapp.authentication;
+package com.app.travelapp.seat;
 
 public interface GetSeatsContract  {
-    interface View{
 
+    interface View{
 
     }
 

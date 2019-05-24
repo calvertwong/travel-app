@@ -6,13 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.travelapp.data.local.SeatItem;
+
+import com.app.travelapp.data.model.SeatInformationItem;
 
 import java.util.List;
 
 public class MySeatAdaptor extends RecyclerView.Adapter<MySeatAdaptor.ViewHolder>{
     private Context context;
-    private List<SeatItem> list;
+    private List<SeatInformationItem> list;
     private static final String TAG = MySeatAdaptor.class.getSimpleName();
 
     @NonNull
