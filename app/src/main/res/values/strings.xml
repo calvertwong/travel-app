@@ -26,8 +26,8 @@
     <string name="password">Password</string>
     <string name="login_here">Login here.</string>
     <string name="already_a_user">Already a user?\u0020</string>
-    <string name="lowercase_first_name">first name</string>
     <string name="lowercase_last_name">last name</string>
+    <string name="lowercase_first_name">last name</string>
     <string name="lowercase_address">address</string>
     <string name="lowercase_email">email</string>
     <string name="lowercase_mobile">mobile</string>

@@ -57,7 +57,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_share) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
+            //temp
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).commit();
+
         } else if (id == R.id.nav_send) {
+            //temp
+
+
 
         }
 
