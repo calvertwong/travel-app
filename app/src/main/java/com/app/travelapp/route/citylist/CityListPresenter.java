@@ -23,7 +23,6 @@ public class CityListPresenter implements CityListContract.Presenter, DataReposi
 
     @Override
     public void onCityLoaded(List<CityItem> cityItems) {
-        Log.d(TAG, "onCityLoaded: " + cityItems);
         view.setupCityListRV(cityItems);
     }
 }

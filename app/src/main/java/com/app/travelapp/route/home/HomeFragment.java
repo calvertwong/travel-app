@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.app.travelapp.R;
 import com.app.travelapp.route.calendar.CalendarFragment;
 import com.app.travelapp.route.citylist.CityListFragment;
+import com.app.travelapp.ui.BusDetailFragment;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -80,7 +82,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         calendar_day_tv.setText(String.valueOf(localDate.getDayOfMonth()));
         calendar_month_tv.setText(String.valueOf(localDate.getMonth()));
         calendar_year_tv.setText(String.valueOf(localDate.getYear()));
-
     }
 
     @Override
@@ -109,12 +110,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 break;
 
             case R.id.home_today_btn:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.home_tomorrow_btn:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.search_bus_btn:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
                 break;
         }
     }
