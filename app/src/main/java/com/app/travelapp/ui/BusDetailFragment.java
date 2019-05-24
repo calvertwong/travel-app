@@ -1,6 +1,9 @@
 package com.app.travelapp.ui;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,12 +44,11 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         view = inflater.inflate(R.layout.fragment_bus_detail,container,false);
 
         init();
-        ////////From - city name --- to To city name
-        tv_toolbar_title.setText("From - To");
         textViewCurrentDate.setText(currentDate);
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
         currentDate = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
@@ -55,6 +57,10 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         layoutManager = new LinearLayoutManager(getContext());
         busDetailDataSource = new BusDetailDataRepository(getContext());
         busDetailDataSource.getBusDetail(this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String origin = preferences.getString("origin", "");
+        String destination = preferences.getString("destination", "");
+        tv_toolbar_title.setText(origin + " to " + destination);
 
     }
 

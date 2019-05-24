@@ -39,7 +39,8 @@ public class RouteIdRemoteDataSource implements RouteIdDataSource {
 
 
     private void handleResult(RouteResponse routeResponse) {
-        Log.e(TAG,"Route response success---" + routeResponse.toString());
+        Log.e(TAG,"Route response success---" + routeResponse.getRoute().get(0).getId());
+        //need to store routeId into shared preference to use it for next network call
 
         //5
         routeCallback.onRoutedLoaded(routeResponse);
@@ -49,8 +50,6 @@ public class RouteIdRemoteDataSource implements RouteIdDataSource {
     private void handleError(Throwable throwable) {
         Log.e(TAG,"Route response Error---" + throwable.getMessage());
     }
-
-
 
 
 }

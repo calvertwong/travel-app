@@ -1,5 +1,6 @@
 package com.app.travelapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -30,12 +31,17 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull BusDetailAdapter.MyViewHolder myViewHolder, int i) {
         BusInformationItem businformationItem = busInfoItemList.get(i);
-        myViewHolder.textViewBusDetailTime.setText(businformationItem.getBusdeparturetime());
-        myViewHolder.textViewBusDetailType.setText(businformationItem.getBustype());
-        myViewHolder.textViewBusDetailFare.setText(businformationItem.getFare());
+        myViewHolder.textViewBusDetailBusNo.setText("Bus No: " + businformationItem.getBusregistrationno());
+        myViewHolder.textViewBusDetailType.setText("Type: "+businformationItem.getBustype());
+        myViewHolder.textViewBusDetailDepartureTime.setText("Departure: "+businformationItem.getBusdeparturetime());
+        myViewHolder.textViewBusDetailDuration.setText("Duration: "+businformationItem.getJournyduration());
+        myViewHolder.textViewBusDetailBoardingTime.setText("Boarding Time: "+businformationItem.getBoardingtime());
+        myViewHolder.textViewBusDetailDroppingTime.setText("Dropping Time: "+businformationItem.getDropingtime());
+        myViewHolder.textViewBusDetailFare.setText("Fare : $"+businformationItem.getFare());
 
     }
 
@@ -45,15 +51,24 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewBusDetailTime,textViewBusDetailType,textViewBusDetailFare;
+        TextView textViewBusDetailBusNo;
+        TextView textViewBusDetailType;
+        TextView textViewBusDetailDepartureTime;
+        TextView textViewBusDetailDuration;
+        TextView textViewBusDetailBoardingTime;
+        TextView textViewBusDetailDroppingTime;
+        TextView textViewBusDetailFare;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewBusDetailTime =itemView.findViewById(R.id.textViewBusDetailTime);
+            textViewBusDetailBusNo =itemView.findViewById(R.id.textViewBusDetailBusNo);
             textViewBusDetailType =itemView.findViewById(R.id.textViewBusDetailType);
+            textViewBusDetailDepartureTime =itemView.findViewById(R.id.textViewBusDetailDepartureTime);
+            textViewBusDetailDuration =itemView.findViewById(R.id.textViewBusDetailDuration);
+            textViewBusDetailBoardingTime =itemView.findViewById(R.id.textViewBusDetailBoardingTime);
+            textViewBusDetailDroppingTime =itemView.findViewById(R.id.textViewBusDetailDroppingTime);
             textViewBusDetailFare =itemView.findViewById(R.id.textViewBusDetailFare);
-            //textViewBusDetailAvailableSeats =itemView.findViewById(R.id.textViewBusDetailAvailableSeats);
         }
     }
 }

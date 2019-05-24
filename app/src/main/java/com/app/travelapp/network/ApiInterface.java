@@ -1,15 +1,11 @@
 package com.app.travelapp.network;
 
-import com.app.travelapp.data.model.BusInformationItem;
 import com.app.travelapp.data.model.CityResponse;
-//import com.app.travelapp.data.model.RegisterUser;
 import com.app.travelapp.data.model.ForgotPasswordResponse;
 import com.app.travelapp.data.model.LoginResponse;
 import com.app.travelapp.data.model.BusDetailResponse;
 import com.app.travelapp.data.model.RouteResponse;
-
 import java.util.List;
-
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -42,11 +38,7 @@ public interface ApiInterface {
                                        @Query("route-startpoint-longitude") String startPointLong,
                                        @Query("route-endpoint-latitude") String endPointLat,
                                        @Query("route-endpoint-longiude") String endPointLong);
-
+    //get bus detail
     @GET("businfo.php?")
-    //Observable<BusDetailResponse> getBusDetail(@Query("id") String routeId);
-    //Observable<List<BusDetailResponse>> getBusDetail(@Query("id") String routeId);
-    Observable<List<BusInformationItem>> getBusDetail(@Query("id") String routeId);
-
-
+    Observable<BusDetailResponse> getBusDetail(@Query("routeid") String routeId);
 }
