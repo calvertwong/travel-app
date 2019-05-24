@@ -4,7 +4,6 @@ package com.app.travelapp.route.home;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.button.MaterialButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.travelapp.R;
 import com.app.travelapp.route.calendar.CalendarFragment;
 import com.app.travelapp.route.citylist.CityListFragment;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class HomeFragment extends Fragment implements View.OnClickListener, HomeContract.View {
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -71,6 +72,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
 
         origin_tv.setText(origin);
         destination_tv.setText(destination);
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        calendar_day_name_tv.setText(localDate.getDayOfWeek().toString());
+        calendar_day_tv.setText(String.valueOf(localDate.getDayOfMonth()));
+        calendar_month_tv.setText(String.valueOf(localDate.getMonth()));
+        calendar_year_tv.setText(String.valueOf(localDate.getYear()));
+
     }
 
     @Override
@@ -82,14 +92,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 //need bundle to tell sharedpreferences which one is requesting the location, origin or destination
                 CityListFragment cityListFragment = new CityListFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("origin", getString(R.string.origin));
+                bundle.putString("origin", getString(R.string.lowercase_origin));
                 cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
             case R.id.destination_tv:
                 cityListFragment = new CityListFragment();
                 bundle = new Bundle();
-                bundle.putString("destination", getString(R.string.destination));
+                bundle.putString("destination", getString(R.string.lowercase_destination));
                 cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
