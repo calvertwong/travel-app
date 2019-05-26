@@ -25,9 +25,9 @@ public class RouteIdDataRepository implements RouteIdDataSource {
     }
     //2
     @Override
-    public void getRoute(GetRouteCallback routeCallback) {
+    public void getRoute(GetRouteCallback routeCallback, String startLat, String startLong, String endLat, String endLong) {
         if(isNetAvailable){
-            remoteRouteIdDataSource.getRoute(routeCallback);
+            remoteRouteIdDataSource.getRoute(routeCallback, startLat, startLong, endLat, endLong);
             Log.d(TAG, "get route --" + routeCallback.toString());
         }else{
             Log.d(TAG, "get route-- " + "No Internet Connection");

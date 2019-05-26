@@ -78,7 +78,6 @@ public class LoginPresenter implements LoginContract.Presenter{
                 @Override
                 public void onFailure(Call<List<LoginResponse>> call, Throwable t) {
                     Log.e(TAG, "onError: "+ t.getMessage());
-
                 }
             });
         }

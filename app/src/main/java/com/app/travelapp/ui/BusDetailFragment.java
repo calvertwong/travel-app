@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +28,9 @@ import com.app.travelapp.data.BusDetailDataSource;
 import com.app.travelapp.data.RouteIdDataRepository;
 import com.app.travelapp.data.RouteIdDataSource;
 import com.app.travelapp.data.model.BusInformationItem;
+import com.app.travelapp.data.model.RouteResponse;
 
-public class BusDetailFragment extends Fragment implements BusDetailDataRepository.GetBusDetailCallback {
+public class BusDetailFragment extends Fragment implements BusDetailDataRepository.GetBusDetailCallback, RouteIdDataRepository.GetRouteCallback {
     private static final String TAG = BusDetailFragment.class.getSimpleName();
     private View view;
     private TextView tv_toolbar_title;
@@ -74,19 +76,30 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         String startLong = preferences.getString("startLong", "");
         String endLat = preferences.getString("endLat", "");
         String endLong = preferences.getString("endLong", "");
-//        routeIdDataSource = new RouteIdDataRepository(getContext(), startLat, startLong, endLat, endLong);
-        routeIdDataSource.getRoute(this);
 
-        busDetailDataSource = new BusDetailDataRepository(getContext());
-        busDetailDataSource.getBusDetail(this);
+        routeIdDataSource = new RouteIdDataRepository(getContext());
+        routeIdDataSource.getRoute(this, startLat, startLong, endLat, endLong);
     }
 
     @Override
     public void onBusDetailLoaded(List<BusInformationItem> busDetailResponse) {
-        progressDialog.dismiss();
         recyclerView.setLayoutManager(layoutManager);
         busDetailAdapter = new BusDetailAdapter(busDetailResponse, getContext());
         recyclerView.setAdapter(busDetailAdapter);
+        progressDialog.dismiss();
+    }
+
+    //routeResponse == null on invalid route or no route being setup in server
+    // else it is a route id
+    @Override
+    public void onRoutedLoaded(RouteResponse routeResponse) {
+        if(routeResponse!= null){
+            busDetailDataSource = new BusDetailDataRepository(getContext());
+            busDetailDataSource.getBusDetail(this, routeResponse.getRoute().get(0).getId());
+        }else {
+            progressDialog.dismiss();
+            Toast.makeText(getContext(), "No route", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

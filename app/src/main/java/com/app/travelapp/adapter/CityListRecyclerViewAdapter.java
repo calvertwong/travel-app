@@ -28,7 +28,7 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
     private static final String TAG = CityListRecyclerViewAdapter.class.getSimpleName();
     private List<CityItem> city_items_list;
     private Context context;
-    private String caller;
+    private String caller, caller_lat, caller_long;
     private CityListContract.Presenter city_list_presenter;
 
     public CityListRecyclerViewAdapter(List<CityItem> city_items_list, Context context, Bundle bundle) {
@@ -37,8 +37,12 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
         if (bundle != null) {
             if (bundle.getString("origin") != null) {
                 caller = context.getString(R.string.lowercase_origin);
+                caller_lat = "startLat";
+                caller_long = "startLong";
             } else if (bundle.getString("destination") != null) {
                 caller = context.getString(R.string.lowercase_destination);
+                caller_lat = "endLat";
+                caller_long = "endLong";
             }
         }
     }
@@ -75,6 +79,8 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
         @Override
         public void onClick(View v) {
             String city_name = city_items_list.get(getLayoutPosition()).getCityname();
+            String city_lat = city_items_list.get(getLayoutPosition()).getCitylatitude();
+            String city_long = city_items_list.get(getLayoutPosition()).getCitylongtitude();
             Bundle bundle = new Bundle();
             bundle.putString(caller, city_name);
             HomeFragment homeFragment = new HomeFragment();
@@ -86,6 +92,8 @@ public class CityListRecyclerViewAdapter extends RecyclerView.Adapter<CityListRe
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(caller, city_name);
+            editor.putString(caller_lat, city_lat);
+            editor.putString(caller_long, city_long);
             editor.apply();
         }
     }

@@ -18,12 +18,12 @@ public class BusDetailRemoteDataSource implements BusDetailDataSource {
    }
 
     @Override
-    public void getBusDetail(GetBusDetailCallback busDetailCallback) {
+    public void getBusDetail(GetBusDetailCallback busDetailCallback, String routeID) {
 
         this.callback = busDetailCallback;
         ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
         //remove the hardcoded route ID
-        Observable<BusDetailResponse> busDetailObservable = apiInterface.getBusDetail("2");
+        Observable<BusDetailResponse> busDetailObservable = apiInterface.getBusDetail(routeID);
         busDetailObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResult,this::handleError);

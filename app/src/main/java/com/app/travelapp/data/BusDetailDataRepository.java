@@ -26,14 +26,12 @@ public class BusDetailDataRepository implements BusDetailDataSource {
     }
 
     @Override
-    public void getBusDetail(GetBusDetailCallback busDetailCallback) {
+    public void getBusDetail(GetBusDetailCallback busDetailCallback, String routeID) {
         if(isNetAvailable){
-            remoteBusDetailDataSource.getBusDetail(busDetailCallback);
+            remoteBusDetailDataSource.getBusDetail(busDetailCallback, routeID);
             Log.e(TAG,"Get Bus Detail");
         }
         else
             Log.e(TAG,"Get Bus Detail .. No Internet");
-
-
     }
 }

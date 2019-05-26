@@ -1,5 +1,4 @@
 package com.app.travelapp.data;
-import com.app.travelapp.data.model.BusDetailResponse;
 import com.app.travelapp.data.model.BusInformationItem;
 
 import java.util.List;
@@ -10,5 +9,5 @@ public interface BusDetailDataSource {
         //void onBusDetailLoaded(List<BusInformationItem> busInformationItems);
         void onBusDetailLoaded(List<BusInformationItem> busDetailResponse);
     }
-        void getBusDetail(GetBusDetailCallback busDetailCallback);
+        void getBusDetail(GetBusDetailCallback busDetailCallback, String id);
 }

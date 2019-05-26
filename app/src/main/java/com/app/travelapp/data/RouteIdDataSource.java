@@ -7,5 +7,5 @@ public interface RouteIdDataSource {
 
         void onRoutedLoaded(RouteResponse routeResponse);
     }
-    void getRoute(GetRouteCallback callback);
+    void getRoute(GetRouteCallback callback, String startLat, String startLong, String endLat, String endLong);
 }
