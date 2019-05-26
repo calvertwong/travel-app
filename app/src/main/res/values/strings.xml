@@ -54,4 +54,5 @@
     <string name="date">date</string>
     <string name="lowercase_origin">origin</string>
     <string name="lowercase_destination">destination</string>
+    <string name="seat_selection">Seat Selection</string>
 </resources>

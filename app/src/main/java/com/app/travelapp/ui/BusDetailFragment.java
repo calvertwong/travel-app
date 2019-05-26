@@ -1,6 +1,7 @@
 package com.app.travelapp.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -64,6 +65,8 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         textViewCurrentDate = view.findViewById(R.id.textViewCurrentDate);
         recyclerView = view.findViewById(R.id.recyclerViewBusDetail);
         layoutManager = new LinearLayoutManager(getContext());
+        busDetailDataSource = new BusDetailDataRepository(getContext());
+        busDetailDataSource.getBusDetail(this);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String origin = preferences.getString("origin", "");
         String destination = preferences.getString("destination", "");
