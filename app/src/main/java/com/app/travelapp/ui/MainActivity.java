@@ -17,6 +17,7 @@ import com.app.travelapp.authentication.register.RegisterFragment;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.seatselection.SeatFragment;
+import com.app.travelapp.seat.ShowSeatDetailsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShowSeatDetailsFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_slideshow) {
 

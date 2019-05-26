@@ -2,7 +2,7 @@ package com.app.travelapp.authentication.login;
 
 import android.support.design.widget.TextInputLayout;
 
-public class LoginContract {
+public interface LoginContract {
     interface View{
         void showInputError(TextInputLayout textInputLayout, String error);
 
