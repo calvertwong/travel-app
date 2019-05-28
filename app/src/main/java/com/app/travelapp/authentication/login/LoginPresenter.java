@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.app.travelapp.data.model.LoginResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
+
 import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -49,25 +52,22 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     private void handleResult(List<LoginResponse> loginResponses) {
-        for (int i = 0; i < loginResponses.size(); i++) {
-            String userid = loginResponses.get(i).getUserid();
-            String lastname = loginResponses.get(i).getLastname();
-            String firstname = loginResponses.get(i).getFirstname();
-            String email = loginResponses.get(i).getEmail();
-            String mobilephone = loginResponses.get(i).getMobile();
-            String apikey = loginResponses.get(i).getAppapikey();
-            Log.e(TAG, "handleLoginResult: " + loginResponses.get(i).getEmail());
+        String userid = loginResponses.get(0).getUserid();
+        String lastname = loginResponses.get(0).getLastname();
+        String firstname = loginResponses.get(0).getFirstname();
+        String email = loginResponses.get(0).getEmail();
+        String mobilephone = loginResponses.get(0).getMobile();
+        String apikey = loginResponses.get(0).getAppapikey();
 
-            SharedPreferences sharedPreferences = context.getSharedPreferences("userPre", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("id", userid);
-            editor.putString("lastname", lastname);
-            editor.putString("firstname", firstname);
-            editor.putString("email", email);
-            editor.putString("mobilephone", mobilephone);
-            editor.putString("apikey", apikey);
-            editor.commit();
-        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userPre", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("id", userid);
+        editor.putString("lastname", lastname);
+        editor.putString("firstname", firstname);
+        editor.putString("email", email);
+        editor.putString("mobilephone", mobilephone);
+        editor.putString("apikey", apikey);
+        editor.commit();
         view.getTohomePage();
         view.loginSuccess("login success");
     }

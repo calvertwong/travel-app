@@ -41,7 +41,7 @@
                 android:id="@+id/login_password_tiet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
 

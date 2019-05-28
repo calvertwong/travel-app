@@ -44,6 +44,11 @@
     <string name="date">date</string>
     <string name="lowercase_origin">origin</string>
     <string name="lowercase_destination">destination</string>
+
+    <string name="place_an_order">Place an order</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="seat_selection">Seat Selection</string>
     <string name="show_map">Show\n map</string>
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
