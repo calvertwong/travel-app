@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.app.travelapp.data.source.remote.CityRemoteDataSource;
 import com.app.travelapp.data.source.remote.SeatRemoteDataSource;
 
 public class SeatRepository implements SeatSource {
@@ -14,9 +13,9 @@ public class SeatRepository implements SeatSource {
     private static final String TAG = SeatRepository.class.getSimpleName();
 
     @Override
-    public void getSeat(SeatSource.GetSeatCallBack callBack) {
+    public void getSeat(GetSeatCallBack callBack, String busId) {
         if (isNetAvailable) {
-            remoteSeatDataSource.getSeat(callBack);
+            remoteSeatDataSource.getSeat(callBack, busId);
         } else {
             Log.d(TAG, "get seat-- " + "No Internet Connection");
         }

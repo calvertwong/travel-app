@@ -11,6 +11,6 @@ public interface SeatSelectionContract {
     }
 
     interface Presenter{
-        void getSeatDetails();
+        void getSeatDetails(String busId);
     }
 }
