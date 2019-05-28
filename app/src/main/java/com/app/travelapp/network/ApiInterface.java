@@ -29,11 +29,18 @@ import retrofit2.http.Query;
         @GET("forgot_pass.php?")
         Observable<List<ForgotPasswordResponse>> getPassword(@Query("mobile") String mobile);
 
-        @FormUrlEncoded
+//        @FormUrlEncoded
+//        @POST("login.php?")
+//        Call<List<LoginResponse>> setUserData(
+//                @Field("mobile") String mobile,
+//                @Field("password") String password);
+
+
         @POST("login.php?")
-        Call<List<LoginResponse>> setUserData(
-                @Field("mobile") String mobile,
-                @Field("password") String password);
+        Observable<List<LoginResponse>> setUserData(
+                @Query("mobile") String mobile,
+                @Query("password") String password);
+
 
         @GET("seatinfo.php?")
         Observable<SeatsResponse> getSeat(@Query("busid") String busid);

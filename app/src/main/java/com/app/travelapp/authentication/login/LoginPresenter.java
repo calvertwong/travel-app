@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.app.travelapp.data.model.LoginResponse;
 import com.app.travelapp.network.ApiInterface;
@@ -12,6 +13,9 @@ import com.app.travelapp.network.RetrofitInstance;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,8 +32,8 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void loginButtonClicked(TextInputLayout login_mobile_til, TextInputLayout login_password_til) {
-        String mobile  = login_mobile_til.getEditText().toString();
-        String password  = login_password_til.getEditText().toString();
+        String mobile  = login_mobile_til.getEditText().getText().toString();
+        String password  = login_password_til.getEditText().getText().toString();
 
         if (TextUtils.isEmpty(mobile)){
             view.showInputError(login_mobile_til,"Enter your mobile");
@@ -38,48 +42,50 @@ public class LoginPresenter implements LoginContract.Presenter{
         }else {
             ApiInterface apiIterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
-            Call<List<LoginResponse>> call = apiIterface.setUserData(mobile,password);
 
-            call.enqueue(new Callback<List<LoginResponse>>() {
-                @Override
-                public void onResponse(Call<List<LoginResponse>> call, Response<List<LoginResponse>> response) {
-                    Log.d(TAG, "onLoginResponse: " + response);
+            Observable<List<LoginResponse>> loginObservable = apiIterface.setUserData(mobile,password);
+            loginObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::handleResult, this::handleError);
 
-                    for (int i = 0; i <response.body().size(); i++) {
-                        String msg = response.body().get(i).getMsg();
-                        if (msg.equals("success")){
-                            String userid = response.body().get(i).getUserid();
-                            String lastname = response.body().get(i).getLastname();
-                            String firstname = response.body().get(i).getFirstname();
-                            String email = response.body().get(i).getEmail();
-                            String mobilephone = response.body().get(i).getMobile();
-                            String apikey = response.body().get(i).getAppapikey();
+            view.getTohomePage();
 
-                            Log.e(TAG, "onResponse: "+response.body().get(i).getAppapikey());
-
-                            //SharedPreferences sharedPreferences = context.getSharedPreferences("userPre",);
-                            SharedPreferences sharedPreferences = context.getSharedPreferences("userPre", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("id",userid);
-                            editor.putString("lastname",lastname);
-                            editor.putString("firstname",firstname);
-                            editor.putString("email",email);
-                            editor.putString("mobilephone",mobilephone);
-                            editor.putString("apikey",apikey);
-                            editor.commit();
-
-                            view.loginSuccess();
-
-                        }else {
-                            view.loginInFailed();
-                        }
-                    }
-                }
-                @Override
-                public void onFailure(Call<List<LoginResponse>> call, Throwable t) {
-                    Log.e(TAG, "onError: "+ t.getMessage());
-                }
-            });
         }
+
+    }
+
+    private void handleError(Throwable throwable) {
+        Log.e(TAG, "handleLoginError: " +  throwable.getMessage());
+
+        view.loginInFailed("login failed");
+
+    }
+
+    private void handleResult(List<LoginResponse> loginResponses) {
+        for (int i = 0; i <loginResponses.size() ; i++) {
+             String userid = loginResponses.get(i).getUserid();
+             String lastname = loginResponses.get(i).getLastname();
+             String firstname = loginResponses.get(i).getFirstname();
+             String email = loginResponses.get(i).getEmail();
+             String mobilephone = loginResponses.get(i).getMobile();
+             String apikey = loginResponses.get(i).getAppapikey();
+             Log.e(TAG, "handleLoginResult: " + loginResponses.get(i).getEmail());
+
+
+            SharedPreferences sharedPreferences = context.getSharedPreferences("userPre", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("id",userid);
+            editor.putString("lastname",lastname);
+            editor.putString("firstname",firstname);
+            editor.putString("email",email);
+            editor.putString("mobilephone",mobilephone);
+            editor.putString("apikey",apikey);
+            editor.commit();
+
+
+        }
+
+        view.loginSuccess("login success");
+
     }
 }

@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.login.LoginFragment;
 import com.app.travelapp.authentication.register.RegisterFragment;
+import com.app.travelapp.payment.PaymentFragment;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.seatselection.SeatFragment;
@@ -48,12 +49,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShowSeatDetailsFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_slideshow) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PaymentFragment()).commit();
 
         } else if (id == R.id.nav_tools) {
             //temp
@@ -61,8 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_share) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
-            //temp
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
+
+
+
 
         } else if (id == R.id.nav_send) {
             //temp

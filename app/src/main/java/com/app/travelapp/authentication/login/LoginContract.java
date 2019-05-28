@@ -6,9 +6,11 @@ public interface LoginContract {
     interface View{
         void showInputError(TextInputLayout textInputLayout, String error);
 
-        void loginSuccess();
+        void getTohomePage();
 
-        void loginInFailed();
+        void loginSuccess(String msg);
+
+        void loginInFailed(String msg);
     }
 
     interface Presenter{
