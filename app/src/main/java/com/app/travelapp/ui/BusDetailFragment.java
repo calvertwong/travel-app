@@ -1,7 +1,6 @@
 package com.app.travelapp.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -107,9 +106,12 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
             busDetailDataSource = new BusDetailDataRepository(getContext());
             busDetailDataSource.getBusDetail(this, routeResponse.getRoute().get(0).getId());
             String routeId = routeResponse.getRoute().get(0).getId();
+            String routeName = routeResponse.getRoute().get(0).getRoutename();
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             SharedPreferences.Editor editor= preferences.edit();
             editor.putString("routeId",routeId);
+            editor.putString("routeName", routeName);
+            editor.apply();
             Log.e(TAG,"Route id :--- " + routeId);
 
         }else {

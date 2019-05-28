@@ -154,5 +154,4 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
             }
         }
     }
-
 }
