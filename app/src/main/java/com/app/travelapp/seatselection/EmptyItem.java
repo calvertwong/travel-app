@@ -2,8 +2,8 @@ package com.app.travelapp.seatselection;
 
 public class EmptyItem extends AbstractItem {
 
-    public EmptyItem(String label) {
-        super(label);
+    public EmptyItem(String label, String status) {
+        super(label, status);
     }
 
 

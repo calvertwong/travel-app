@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.app.travelapp.data.DataSource;
 import com.app.travelapp.data.SeatSource;
+import com.app.travelapp.data.model.SeatInformationItem;
 import com.app.travelapp.data.model.SeatsResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,6 +34,7 @@ public class SeatRemoteDataSource implements SeatSource {
                 .create(ApiInterface.class);
 
 
+        //TODO replace busId with a variable
         Observable<SeatsResponse> seatsResponseObservable = apiInterface
                 .getSeat("102");
         seatsResponseObservable.subscribeOn(Schedulers.io())
@@ -40,6 +44,7 @@ public class SeatRemoteDataSource implements SeatSource {
     }
 
     private void handleResult(SeatsResponse seatsResponse) {
+        Log.d(TAG, "handleResult: " + seatsResponse);
         getSeatCallBack.onSeatLoad(seatsResponse.getSeatinformation());
     }
 
