@@ -40,12 +40,11 @@ public class SeatRemoteDataSource implements SeatSource {
     }
 
     private void handleResult(SeatsResponse seatsResponse) {
-        Log.e(TAG, "handleResult: "+seatsResponse.getSeatinformation().get(0));
         getSeatCallBack.onSeatLoad(seatsResponse.getSeatinformation());
     }
 
     private void handleError(Throwable throwable) {
+        getSeatCallBack.onSeatLoad(null);
         Log.e(TAG, "handleError: "+throwable.getMessage());
     }
-
 }

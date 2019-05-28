@@ -1,7 +1,9 @@
 package com.app.travelapp.ui;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private View view;
+    private SharedPreferences sharedPreferences;
 
     public MapFragment() {
     }
@@ -27,6 +30,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -39,9 +44,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        String startLat = sharedPreferences.getString("startLat", "");
+        String startLong = sharedPreferences.getString("startLong", "");
+        String endLat = sharedPreferences.getString("endLat", "");
+        String endLong = sharedPreferences.getString("endLong", "");
+        String originCity = sharedPreferences.getString("origin", "");
+        String destinationCity = sharedPreferences.getString("destination", "");
+
+        LatLng origin = new LatLng(Double.parseDouble(startLat), Double.parseDouble(startLong));
+        LatLng destination = new LatLng(Double.parseDouble(endLat), Double.parseDouble(endLong));
+        mMap.addMarker(new MarkerOptions().position(origin).title("Origin: " + originCity));
+        mMap.addMarker(new MarkerOptions().position(destination).title("Destination: " + destinationCity));
+        float zoomLevel = 5.0f; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origin, zoomLevel));
     }
 }
