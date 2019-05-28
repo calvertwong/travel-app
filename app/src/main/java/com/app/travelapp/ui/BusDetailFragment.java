@@ -94,6 +94,7 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("busId",busId);
+        editor.apply();
         Log.e(TAG,"Bus id :--- " + busId);
 
     }

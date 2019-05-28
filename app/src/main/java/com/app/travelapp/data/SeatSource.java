@@ -10,6 +10,6 @@ public interface SeatSource {
         void onSeatLoad(List<SeatInformationItem> seatResponse);
     }
 
-    void getSeat(GetSeatCallBack callBack);
+    void getSeat(GetSeatCallBack callBack, String busId);
 
 }
