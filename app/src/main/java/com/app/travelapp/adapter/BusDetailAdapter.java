@@ -2,7 +2,9 @@ package com.app.travelapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.app.travelapp.R;
 import com.app.travelapp.data.model.BusInformationItem;
+import com.app.travelapp.seatselection.SeatFragment;
+import com.app.travelapp.ui.MainActivity;
 
 import java.util.List;
 
@@ -42,6 +46,14 @@ public class BusDetailAdapter extends RecyclerView.Adapter<BusDetailAdapter.MyVi
         myViewHolder.textViewBusDetailBoardingTime.setText("Boarding Time: "+businformationItem.getBoardingtime());
         myViewHolder.textViewBusDetailDroppingTime.setText("Dropping Time: "+businformationItem.getDropingtime());
         myViewHolder.textViewBusDetailFare.setText("Fare : $"+businformationItem.getFare());
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SeatFragment seatFragment = new SeatFragment();
+                ((MainActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,seatFragment).addToBackStack(null).commit();
+            }
+        });
 
     }
 
