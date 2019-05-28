@@ -28,8 +28,9 @@ public class SeatSelectionPresenter implements SeatSelectionContract.Presenter, 
     }
 
     @Override
-    public void getSeatDetails() {
-        seatSource.getSeat(this);
+    public void getSeatDetails(String busId) {
+        seatSource.getSeat(this, busId);
+        Log.d(TAG, "getSeatDetails: " + busId);
     }
 
     @Override

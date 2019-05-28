@@ -1,6 +1,8 @@
 package com.app.travelapp.seatselection;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,8 +19,14 @@ import com.app.travelapp.adapter.SeatAdapter;
 import com.app.travelapp.data.model.Seat;
 import com.app.travelapp.data.model.SeatInformationItem;
 import com.app.travelapp.payment.PaymentFragment;
+import com.app.travelapp.ui.BusDetailFragment;
+import com.app.travelapp.utils.SelectedSeatClass;
+import com.app.travelapp.payment.PaymentFragment;
 import com.app.travelapp.ui.MainActivity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,9 +42,10 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
     private TextView textViewSeatSelected;
     private RecyclerView recyclerView;
     private SeatSelectionPresenter seatSelectionPresenter;
+    private List<String> selectedSeatList;
 
 
-    public SeatFragment(){
+    public SeatFragment() {
     }
 
     @Nullable
@@ -46,11 +55,21 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
         tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
         textViewSeatSelected = view.findViewById(R.id.textViewSeatSelected);
         tv_toolbar_title.setText("Seat Selection");
+        selectedSeatList = new ArrayList<>();
 
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        String busId = preferences.getString("busId", "");
+        EventBus.getDefault().register(this);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String busId = preferences.getString("busId", "");
         seatSelectionPresenter = new SeatSelectionPresenter(this, getContext());
-        seatSelectionPresenter.getSeatDetails();
+        seatSelectionPresenter.getSeatDetails(busId);
+
+        textViewSeatSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PaymentFragment()).addToBackStack(null).commit();
+            }
+        });
 
         return view;
     }
@@ -60,10 +79,14 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
         textViewSeatSelected.setText("Book " + count + " seats");
     }
 
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void getSelectedSeatList(SelectedSeatClass selectedSeatClass){
+        selectedSeatList = selectedSeatClass.getSelectedSeatList();
+        Log.d(TAG, "getSelectedSeatList: " + selectedSeatClass.getSelectedSeatList());
+    }
+
     @Override
     public void parseSeatResponse(List<SeatInformationItem> seatResponse) {
-        Log.d(TAG, "parseSeatResponse: " + seatResponse);
-        Log.d(TAG, "getS1: " + seatResponse.get(0).getS1());
 //        try {
 //            JSONObject jsonObject = new JSONObject(seatResponse);
 //            JSONArray jsonArray = jsonObject.getJSONArray("seatinformation");
@@ -90,13 +113,6 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
 
         int seatNum = 1;
         for (int i = 1; i <= totalSeats + totalSeats / COLUMNS + totalSeats % COLUMNS + 1; i++) {
-//            if (i % COLUMNS == 0 || i % COLUMNS == 4) {
-//                items.add(new EdgeItem("s" + seatNum++));
-//            } else if (i % COLUMNS == 1 || i % COLUMNS == 3) {
-//                items.add(new CenterItem("s" + seatNum++));
-//            } else {
-//                items.add(new EmptyItem(""));
-//            }
             if (i == 1) {
                 items.add(new EdgeItem("s1", seatResponse.get(0).getS1()));
             } else if (i == 2) {
@@ -205,14 +221,6 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
                 items.add(new CenterItem("s47", seatResponse.get(0).getS47()));
             }
         }
-        PaymentFragment paymentFragment = new PaymentFragment();
-        textViewSeatSelected.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,paymentFragment).addToBackStack(null).commit();
-
-            }
-        });
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), COLUMNS);

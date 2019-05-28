@@ -17,6 +17,9 @@ import com.app.travelapp.seatselection.AbstractItem;
 import com.app.travelapp.seatselection.CenterItem;
 import com.app.travelapp.seatselection.EdgeItem;
 import com.app.travelapp.seatselection.SelectableAdapter;
+import com.app.travelapp.utils.SelectedSeatClass;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,8 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
     private List<String> selectedSeatList = new ArrayList<>();
     private Context mContext;
     private LayoutInflater mLayoutInflater;
+    private SelectedSeatClass selectedSeatClass = new SelectedSeatClass();
+
 
     private List<AbstractItem> mItems;
 
@@ -115,6 +120,8 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
                     for(int i=0; i<selectedSeatList.size(); i++){
                         Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
                     }
+                    selectedSeatClass.setSelectedSeatList(selectedSeatList);
+                    EventBus.getDefault().postSticky(selectedSeatClass);
                     Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
                 });
             }
@@ -140,6 +147,8 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
                     for(int i=0; i<selectedSeatList.size(); i++){
                         Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
                     }
+                    selectedSeatClass.setSelectedSeatList(selectedSeatList);
+                    EventBus.getDefault().postSticky(selectedSeatClass);
                     Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
                 });
             }
