@@ -9,13 +9,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.login.LoginFragment;
-import com.app.travelapp.authentication.register.RegisterFragment;
 import com.app.travelapp.payment.PaymentFragment;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
