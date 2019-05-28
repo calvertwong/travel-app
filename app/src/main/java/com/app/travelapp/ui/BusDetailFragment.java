@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,6 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
     public BusDetailFragment() {
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,12 +65,11 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         textViewCurrentDate = view.findViewById(R.id.textViewCurrentDate);
         recyclerView = view.findViewById(R.id.recyclerViewBusDetail);
         layoutManager = new LinearLayoutManager(getContext());
-        busDetailDataSource = new BusDetailDataRepository(getContext());
-        busDetailDataSource.getBusDetail(this);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String origin = preferences.getString("origin", "");
         String destination = preferences.getString("destination", "");
         tv_toolbar_title.setText(origin + " to " + destination);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Getting routes");
         progressDialog.show();
@@ -82,6 +81,7 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
 
         routeIdDataSource = new RouteIdDataRepository(getContext());
         routeIdDataSource.getRoute(this, startLat, startLong, endLat, endLong);
+
     }
 
     @Override
@@ -90,6 +90,12 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         busDetailAdapter = new BusDetailAdapter(busDetailResponse, getContext());
         recyclerView.setAdapter(busDetailAdapter);
         progressDialog.dismiss();
+        String busId = busDetailResponse.get(0).getBusid();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor= preferences.edit();
+        editor.putString("busId",busId);
+        Log.e(TAG,"Bus id :--- " + busId);
+
     }
 
     //routeResponse == null on invalid route or no route being setup in server
@@ -99,6 +105,12 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         if(routeResponse!= null){
             busDetailDataSource = new BusDetailDataRepository(getContext());
             busDetailDataSource.getBusDetail(this, routeResponse.getRoute().get(0).getId());
+            String routeId = routeResponse.getRoute().get(0).getId();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences.Editor editor= preferences.edit();
+            editor.putString("routeId",routeId);
+            Log.e(TAG,"Route id :--- " + routeId);
+
         }else {
             progressDialog.dismiss();
             Toast.makeText(getContext(), "No route", Toast.LENGTH_SHORT).show();

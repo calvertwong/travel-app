@@ -12,6 +12,7 @@
         android:src="@drawable/ic_seats_book"
         android:layout_centerHorizontal="true">
     </ImageView>
+
     <ImageView
         android:id="@+id/img_seat_selected"
         android:layout_width="40dp"

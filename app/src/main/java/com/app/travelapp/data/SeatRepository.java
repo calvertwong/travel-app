@@ -17,12 +17,9 @@ public class SeatRepository implements SeatSource {
     public void getSeat(SeatSource.GetSeatCallBack callBack) {
         if (isNetAvailable) {
             remoteSeatDataSource.getSeat(callBack);
-            Log.d(TAG, "get seat --" + callBack.toString());
         } else {
             Log.d(TAG, "get seat-- " + "No Internet Connection");
         }
-
-
     }
 
 
@@ -33,10 +30,7 @@ public class SeatRepository implements SeatSource {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         isNetAvailable = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-
         remoteSeatDataSource = (SeatSource) new SeatRemoteDataSource();
-        // get city data from API
-
     }
 
 }

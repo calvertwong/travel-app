@@ -1,6 +1,9 @@
 package com.app.travelapp.data.source.remote;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.app.travelapp.data.RouteIdDataSource;
@@ -15,6 +18,8 @@ import io.reactivex.schedulers.Schedulers;
 public class RouteIdRemoteDataSource implements RouteIdDataSource {
     private static final String TAG = RouteIdRemoteDataSource.class.getSimpleName();
     private RouteIdDataSource.GetRouteCallback routeCallback;
+    private Context context;
+    private SharedPreferences preferences;
 
 
     public RouteIdRemoteDataSource() {
@@ -46,18 +51,20 @@ public class RouteIdRemoteDataSource implements RouteIdDataSource {
 
 
     private void handleResult(RouteResponse routeResponse) {
-//        Log.e(TAG, "Route response success---" + routeResponse.getRoute().get(0).getId());
         Log.e(TAG, "Route response success---" + routeResponse);
         //need to store routeId into shared preference to use it for next network call
+
+
+        String routeId = routeResponse.getRoute().get(0).getId();
+        Log.e(TAG, "Route id ---" + routeId);
 
         //5
         routeCallback.onRoutedLoaded(routeResponse);
     }
 
+
     private void handleError(Throwable throwable) {
         Log.e(TAG, "Route response Error---" + throwable.getMessage());
         routeCallback.onRoutedLoaded(null);
     }
-
-
 }

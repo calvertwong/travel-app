@@ -48,6 +48,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     }
 
     private void init() {
+        TextView toolbar_title_tv = getActivity().findViewById(R.id.toolbar_title_tv);
+        toolbar_title_tv.setText(getString(R.string.login));
         login_mobile_et = view.findViewById(R.id.login_mobile_tiet);
         login_password_et = view.findViewById(R.id.login_password_tiet);
         login_mobile_til = view.findViewById(R.id.login_mobile_til);
@@ -60,8 +62,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
     @Override
     public void onClick(View v) {
-
-
         switch (v.getId()) {
             case R.id.login_forgot_password_r_tv:
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).addToBackStack(null).commit();
@@ -84,14 +84,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     @Override
     public void getTohomePage() {
         getFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).addToBackStack(null).commit();
-
     }
 
 
     @Override
     public void loginSuccess(String msg) {
-       // Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 

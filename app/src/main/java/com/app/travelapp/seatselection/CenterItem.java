@@ -2,8 +2,8 @@ package com.app.travelapp.seatselection;
 
 public class CenterItem extends AbstractItem {
 
-    public CenterItem(String label) {
-        super(label);
+    public CenterItem(String label, String status) {
+        super(label, status);
     }
 
 

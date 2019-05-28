@@ -59,7 +59,8 @@
             android:id="@+id/login_forgot_password_r_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorLinkBlue"
             android:text="@string/forgot_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,9 +77,9 @@
             app:layout_constraintTop_toBottomOf="@+id/login_forgot_password_r_tv" />
 
         <android.support.design.button.MaterialButton
-            android:id="@+id/login_create_accunt_btn"
+            android:id="@+id/login_create_account_btn"
             style="@style/AuthnButtonStyle"
-            android:text="Create Account"
+            android:text="@string/create_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_no_account_tv"

@@ -1,5 +1,7 @@
 package com.app.travelapp.data.source.remote;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import com.app.travelapp.data.BusDetailDataSource;
 import com.app.travelapp.data.model.BusDetailResponse;
@@ -34,8 +36,10 @@ public class BusDetailRemoteDataSource implements BusDetailDataSource {
         callback.onBusDetailLoaded(busDetailResponse.getBusinformation());
     }
 
+
     private void handleError(Throwable throwable) {
         Log.e(TAG,"error---" + throwable.getMessage());
 
     }
+
 }

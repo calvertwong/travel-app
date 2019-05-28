@@ -6,17 +6,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.button.MaterialButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.app.travelapp.R;
-import com.app.travelapp.route.calendar.CalendarFragment;
 import com.app.travelapp.route.citylist.CityListFragment;
 import com.app.travelapp.ui.BusDetailFragment;
+import com.app.travelapp.ui.MapFragment;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -26,14 +24,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
     private static final String TAG = HomeFragment.class.getSimpleName();
     private View view;
     private TextView origin_tv, destination_tv, calendar_day_tv, calendar_day_name_tv, calendar_month_tv, calendar_year_tv;
-    private MaterialButton home_today_btn, home_tomorrow_btn, search_bus_btn;
+    private MaterialButton show_map_btn, search_bus_btn;
     private LinearLayout journey_date_ll;
     private HomePresenter home_presenter;
     private Bundle bundle;
 
     public HomeFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,9 +40,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
 
         origin_tv.setOnClickListener(this);
         destination_tv.setOnClickListener(this);
-        journey_date_ll.setOnClickListener(this);
-        home_today_btn.setOnClickListener(this);
-        home_tomorrow_btn.setOnClickListener(this);
+        show_map_btn.setOnClickListener(this);
         search_bus_btn.setOnClickListener(this);
 
         return view;
@@ -61,10 +56,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         calendar_day_name_tv = view.findViewById(R.id.calendar_day_name_tv);
         calendar_month_tv = view.findViewById(R.id.calendar_month_tv);
         calendar_year_tv = view.findViewById(R.id.calendar_year_tv);
-        home_today_btn = view.findViewById(R.id.home_today_btn);
-        home_tomorrow_btn = view.findViewById(R.id.home_tomorrow_btn);
+        show_map_btn = view.findViewById(R.id.show_map_btn);
         search_bus_btn = view.findViewById(R.id.search_bus_btn);
-        journey_date_ll = view.findViewById(R.id.journey_date_ll);
 
         home_presenter = new HomePresenter(this);
 
@@ -105,16 +98,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
                 break;
 
-            case R.id.journey_date_ll:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarFragment()).addToBackStack(null).commit();
-                break;
-
-            case R.id.home_today_btn:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
-                break;
-
-            case R.id.home_tomorrow_btn:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
+            case R.id.show_map_btn:
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MapFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.search_bus_btn:

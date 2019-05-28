@@ -21,13 +21,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCurrentDate">
 
         <TextView
-            android:id="@+id/textViewDeparture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".30"
@@ -38,7 +38,6 @@
             android:textColor="@color/bg_tab_text_color" />
 
         <TextView
-            android:id="@+id/textViewDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".30"
@@ -49,7 +48,6 @@
             android:textColor="@color/bg_tab_text_color" />
 
         <TextView
-            android:id="@+id/textViewPrice"
             android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:layout_weight=".30"
