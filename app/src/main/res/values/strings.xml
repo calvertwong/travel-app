@@ -14,10 +14,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
-    <string name="create_an_account">Create an Account</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="by_pressing_sign_up_you_agree_with_the_terms_of_services_and_privacy_policy">By pressing Sign Up you agree with the Terms of Services and Privacy Policy</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="address">Address</string>
@@ -54,5 +51,12 @@
     <string name="date">date</string>
     <string name="lowercase_origin">origin</string>
     <string name="lowercase_destination">destination</string>
+    <string name="show_map">Show\n map</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="place_an_order">Place an order</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="seat_selection">Seat Selection</string>
 </resources>

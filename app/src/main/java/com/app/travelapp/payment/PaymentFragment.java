@@ -40,7 +40,7 @@ import java.util.Set;
 public class PaymentFragment extends Fragment {
 
     private static final String TAG = "paymentExample";
-    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
     private static final int REQUEST_CODE_PAYMENT = 1;
     private Button button;
     private TextView textresult;
@@ -92,9 +92,7 @@ public class PaymentFragment extends Fragment {
 
         // send the same configuration for restart resiliency
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
-
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
 
     }
@@ -115,15 +113,8 @@ public class PaymentFragment extends Fragment {
                     try {
                         Log.i(TAG, confirm.toJSONObject().toString(4));
                         Log.i(TAG, confirm.getPayment().toJSONObject().toString(4));
-                        /**
-                         *  TODO: send 'confirm' (and possibly confirm.getPayment() to your server for verification
-                         * or consent completion.
-                         * See https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                         * for more details.
-                         *
-                         * For sample mobile backend interactions, see
-                         * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
-                         */
+
+
                         displayResultText("PaymentConfirmation info received from PayPal");
 
 
@@ -204,13 +195,13 @@ public class PaymentFragment extends Fragment {
 
     protected void displayResultText(String result) {
         textresult.setText("Result : " + result);
-        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDestroy() {
         // Stop service when done
-       //stopService(new Intent(this, PayPalService.class));
+        //stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
     }
 

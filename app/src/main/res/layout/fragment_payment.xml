@@ -8,26 +8,25 @@
 
     <Button
         android:id="@+id/buyItBtn"
-        android:layout_width="0dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="151dp"
-        android:text="Buy a Thing"
+        android:layout_marginBottom="285dp"
+        android:text="@string/place_an_order"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
         android:id="@+id/txtResult"
         android:layout_width="89dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
+        android:layout_marginBottom="86dp"
         android:text="Result"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        app:layout_constraintStart_toStartOf="@+id/buyItBtn"
-        app:layout_constraintTop_toBottomOf="@+id/buyItBtn" />
+        app:layout_constraintBottom_toTopOf="@+id/buyItBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
