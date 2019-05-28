@@ -47,7 +47,6 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
     public BusDetailFragment() {
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         String origin = preferences.getString("origin", "");
         String destination = preferences.getString("destination", "");
         tv_toolbar_title.setText(origin + " to " + destination);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Getting routes");
         progressDialog.show();

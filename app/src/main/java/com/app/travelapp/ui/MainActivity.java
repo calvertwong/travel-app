@@ -1,5 +1,7 @@
 package com.app.travelapp.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +23,8 @@ import com.app.travelapp.seatselection.SeatFragment;
 import com.app.travelapp.seat.ShowSeatDetailsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         init();
+        sharedPreferences = getSharedPreferences("userPre", Context.MODE_PRIVATE);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegisterFragment()).commit();
-
+        if (sharedPreferences.getString("id", "").equals("")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        }
     }
 
     @Override
@@ -52,27 +60,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BusDetailFragment()).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShowSeatDetailsFragment()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowSeatDetailsFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_slideshow) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PaymentFragment()).commit();
 
         } else if (id == R.id.nav_tools) {
             //temp
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ForgotPasswordFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).commit();
 
         } else if (id == R.id.nav_share) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
-
-
-
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
         } else if (id == R.id.nav_send) {
-            //temp
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SeatFragment()).addToBackStack(null).commit();
-
-
-
+        } else if (id == R.id.nav_sign_out) {
+            editor = sharedPreferences.edit();
+            editor.clear().apply();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
