@@ -16,7 +16,6 @@ public class DbOperation {
 
     public DbOperation(Context context){
         dbHelper = new DbHelper(context);
-
     }
 
     public void openDb(){
@@ -100,10 +99,6 @@ public class DbOperation {
         String passengername = cursor.getString(passengernameColIndex);
         int passengerage = cursor.getInt(passengerageColIndex);
         String passengergender = cursor.getString(passengergenderColIndex);
-
-
-
-
 
         return new CheckOrder(routeName,busid,fare,coupondiscount,servicetax,journydate,
                 boardingtime,droppingtime,duration,passengerid,passengeremail,passengermobile,selectedseat,

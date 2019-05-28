@@ -21,10 +21,6 @@ import com.app.travelapp.data.model.SeatInformationItem;
 import com.app.travelapp.payment.PaymentFragment;
 import com.app.travelapp.ui.BusDetailFragment;
 import com.app.travelapp.utils.SelectedSeatClass;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +36,6 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
     private TextView textViewSeatSelected;
     private RecyclerView recyclerView;
     private SeatSelectionPresenter seatSelectionPresenter;
-    private List<String> selectedSeatList;
 
 
     public SeatFragment() {
@@ -53,9 +48,6 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
         tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
         textViewSeatSelected = view.findViewById(R.id.textViewSeatSelected);
         tv_toolbar_title.setText("Seat Selection");
-        selectedSeatList = new ArrayList<>();
-
-        EventBus.getDefault().register(this);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String busId = preferences.getString("busId", "");
@@ -75,12 +67,6 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
     @Override
     public void onSeatSelected(int count) {
         textViewSeatSelected.setText("Book " + count + " seats");
-    }
-
-    @Subscribe (threadMode = ThreadMode.MAIN)
-    public void getSelectedSeatList(SelectedSeatClass selectedSeatClass){
-        selectedSeatList = selectedSeatClass.getSelectedSeatList();
-        Log.d(TAG, "getSelectedSeatList: " + selectedSeatClass.getSelectedSeatList());
     }
 
     @Override

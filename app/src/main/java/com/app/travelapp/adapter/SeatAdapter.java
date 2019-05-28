@@ -19,8 +19,6 @@ import com.app.travelapp.seatselection.EdgeItem;
 import com.app.travelapp.seatselection.SelectableAdapter;
 import com.app.travelapp.utils.SelectedSeatClass;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +28,8 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private SelectedSeatClass selectedSeatClass = new SelectedSeatClass();
-
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     private List<AbstractItem> mItems;
 
@@ -67,6 +66,8 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mItems = items;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -121,7 +122,9 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
                         Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
                     }
                     selectedSeatClass.setSelectedSeatList(selectedSeatList);
-                    EventBus.getDefault().postSticky(selectedSeatClass);
+
+                    editor.putString("selectedseats", selectedSeatList.toString());
+                    editor.apply();
                     Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
                 });
             }
@@ -148,7 +151,9 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
                         Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
                     }
                     selectedSeatClass.setSelectedSeatList(selectedSeatList);
-                    EventBus.getDefault().postSticky(selectedSeatClass);
+
+                    editor.putString("selectedseats", selectedSeatList.toString());
+                    editor.apply();
                     Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
                 });
             }
