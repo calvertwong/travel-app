@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.authentication.register.RegisterFragment;
+import com.app.travelapp.route.home.HomeFragment;
 
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {
     private static final String TAG = LoginFragment.class.getSimpleName();
@@ -59,6 +60,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
     @Override
     public void onClick(View v) {
+
+
         switch (v.getId()) {
             case R.id.login_forgot_password_r_tv:
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).addToBackStack(null).commit();
@@ -79,13 +82,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     }
 
     @Override
-    public void loginSuccess() {
-        Toast.makeText(context, "login Success ", Toast.LENGTH_SHORT).show();
+    public void getTohomePage() {
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).addToBackStack(null).commit();
+
+    }
+
+
+    @Override
+    public void loginSuccess(String msg) {
+       // Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void loginInFailed() {
-        Toast.makeText(context, "login failed", Toast.LENGTH_SHORT).show();
+    public void loginInFailed(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }
 
