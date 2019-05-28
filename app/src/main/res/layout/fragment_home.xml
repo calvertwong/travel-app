@@ -1,10 +1,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_background"
+    android:padding="20dp"
     tools:context="com.app.travelapp.route.home.HomeFragment">
 
     <LinearLayout
@@ -15,12 +15,10 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/from_tv"
             style="@style/HomeFromToTextViewStyle"
             android:text="@string/from" />
 
         <View
-            android:id="@+id/origin_divider"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="?android:attr/listDivider" />
@@ -39,12 +37,10 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/to_tv"
             style="@style/HomeFromToTextViewStyle"
             android:text="@string/to" />
 
         <View
-            android:id="@+id/destination_divider"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="?android:attr/listDivider" />
@@ -56,22 +52,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:id="@+id/journey_date_ll"
-        style="@style/WidthMatchParentHeightWrapContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destination_ll">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginRight="3dp"
             android:layout_weight="3"
             android:background="@android:color/white"
-            android:layout_marginRight="3dp"
             android:padding="10dp">
 
             <TextView
@@ -85,10 +83,10 @@
             <ImageView
                 android:id="@+id/calendar_iv"
                 style="@style/WidthWrapContentHeightWrapContent"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:paddingLeft="2dp"
+                android:paddingTop="10dp"
                 android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:src="@drawable/ic_event_available_black_24dp"
@@ -100,9 +98,9 @@
                 android:id="@+id/calendar_day_tv"
                 style="@style/WidthWrapContentHeightWrapContent"
                 android:padding="10dp"
-                android:text="20"
-                android:scaleY="2.5"
                 android:scaleX="1.5"
+                android:scaleY="2.5"
+                android:text="20"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -137,27 +135,19 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@android:color/white"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <android.support.design.button.MaterialButton
-                android:id="@+id/home_today_btn"
-                style="@style/WidthMatchParentHeightWrapContent"
-                app:backgroundTint="@android:color/black"
-                android:text="@string/today"
-                android:textScaleX="0.8"
-                android:textColor="@android:color/white" />
-
-            <android.support.design.button.MaterialButton
-                android:id="@+id/home_tomorrow_btn"
-                style="@style/WidthMatchParentHeightWrapContent"
-                android:background="@color/colorPrimary"
-                android:text="@string/tomorrow"
-                android:textScaleX="0.8"
-                android:textColor="@android:color/black" />
+                android:id="@+id/show_map_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/show_map"
+                android:textColor="@android:color/black"
+                android:textScaleX="1.2" />
         </LinearLayout>
 
     </LinearLayout>
