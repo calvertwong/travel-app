@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.travelapp.R;
-import com.app.travelapp.route.calendar.CalendarFragment;
 import com.app.travelapp.route.citylist.CityListFragment;
 import com.app.travelapp.ui.BusDetailFragment;
 import com.app.travelapp.ui.MapFragment;
@@ -44,7 +43,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
 
         origin_tv.setOnClickListener(this);
         destination_tv.setOnClickListener(this);
-        journey_date_ll.setOnClickListener(this);
         show_map_btn.setOnClickListener(this);
         search_bus_btn.setOnClickListener(this);
 
@@ -63,7 +61,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
         calendar_year_tv = view.findViewById(R.id.calendar_year_tv);
         show_map_btn = view.findViewById(R.id.show_map_btn);
         search_bus_btn = view.findViewById(R.id.search_bus_btn);
-        journey_date_ll = view.findViewById(R.id.journey_date_ll);
 
         home_presenter = new HomePresenter(this);
 
@@ -102,10 +99,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
                 bundle.putString("destination", getString(R.string.lowercase_destination));
                 cityListFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, cityListFragment).addToBackStack(null).commit();
-                break;
-
-            case R.id.journey_date_ll:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarFragment()).addToBackStack(null).commit();
                 break;
 
             case R.id.show_map_btn:
