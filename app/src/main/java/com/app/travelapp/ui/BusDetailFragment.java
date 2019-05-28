@@ -94,9 +94,14 @@ public class BusDetailFragment extends Fragment implements BusDetailDataReposito
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("busId",busId);
+        editor.putString("busregistrationno", busDetailResponse.get(0).getBusregistrationno());
+        editor.putString("bustype", busDetailResponse.get(0).getBustype());
+        editor.putString("busdeparturetime", busDetailResponse.get(0).getBusdeparturetime());
+        editor.putString("journyduration", busDetailResponse.get(0).getJournyduration());
+        editor.putString("fare", busDetailResponse.get(0).getFare());
+        editor.putString("boardingtime", busDetailResponse.get(0).getBoardingtime());
+        editor.putString("dropingtime", busDetailResponse.get(0).getDropingtime());
         editor.apply();
-        Log.e(TAG,"Bus id :--- " + busId);
-
     }
 
     //routeResponse == null on invalid route or no route being setup in server
