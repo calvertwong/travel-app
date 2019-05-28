@@ -7,10 +7,12 @@ public abstract class AbstractItem {
     public static final int TYPE_EMPTY = 2;
 
     private String label;
+    private String status;
 
 
-    public AbstractItem(String label) {
+    public AbstractItem(String label, String status) {
         this.label = label;
+        this.status = status;
     }
 
 
@@ -18,9 +20,15 @@ public abstract class AbstractItem {
         return label;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     abstract public int getType();
-
-
 
 
 }

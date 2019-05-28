@@ -1,6 +1,8 @@
 package com.app.travelapp.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +18,20 @@ import com.app.travelapp.seatselection.CenterItem;
 import com.app.travelapp.seatselection.EdgeItem;
 import com.app.travelapp.seatselection.SelectableAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
-    //private OnSeatSelected mOnSeatSelected;
+    static final String TAG = SeatAdapter.class.getSimpleName();
+    private List<String> selectedSeatList = new ArrayList<>();
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
+
+    private List<AbstractItem> mItems;
 
     private static class EdgeViewHolder extends RecyclerView.ViewHolder {
         ImageView imgSeat;
-        private final ImageView imgSeatSelected;
+        ImageView imgSeatSelected;
 
         public EdgeViewHolder(View itemView) {
             super(itemView);
@@ -48,11 +56,6 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
             super(itemView);
         }
     }
-
-    private Context mContext;
-    private LayoutInflater mLayoutInflater;
-
-    private List<AbstractItem> mItems;
 
     public SeatAdapter(Context context, List<AbstractItem> items) {
         //mOnSeatSelected =  (OnSeatSelected)context;
@@ -88,31 +91,58 @@ public class SeatAdapter extends SelectableAdapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         int type = mItems.get(position).getType();
+        String status = mItems.get(position).getStatus();
+
         if (type == AbstractItem.TYPE_CENTER) {
-            final CenterItem item = (CenterItem) mItems.get(position);
+            CenterItem item = (CenterItem) mItems.get(position);
             CenterViewHolder holder = (CenterViewHolder) viewHolder;
 
-            holder.imgSeat.setOnClickListener(v -> {
-                toggleSelection(position);
+            if (status.equals("1")) {
+                holder.imgSeat.setImageResource(R.drawable.ic_seats_reserved);
+                holder.imgSeat.setOnClickListener(v -> {
+                    Toast.makeText(mContext, item.getLabel() + " is reserved", Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                holder.imgSeat.setOnClickListener(v -> {
+                    if(selectedSeatList.contains(item.getLabel())){
+                        selectedSeatList.remove(item.getLabel());
+                        holder.imgSeat.setImageResource(R.drawable.ic_seats_book);
 
-                Toast.makeText(mContext, mItems.get(position).getLabel(), Toast.LENGTH_SHORT).show();
-                //mOnSeatSelected.onSeatSelected(getSelectedItemCount());
-            });
-
-            holder.imgSeatSelected.setVisibility(isSelected(position) ? View.VISIBLE : View.INVISIBLE);
+                    }else{
+                        selectedSeatList.add(item.getLabel());
+                        holder.imgSeat.setImageResource(R.drawable.ic_seats_booked);
+                    }
+                    for(int i=0; i<selectedSeatList.size(); i++){
+                        Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
+                    }
+                    Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
+                });
+            }
 
         } else if (type == AbstractItem.TYPE_EDGE) {
-            final EdgeItem item = (EdgeItem) mItems.get(position);
+            EdgeItem item = (EdgeItem) mItems.get(position);
             EdgeViewHolder holder = (EdgeViewHolder) viewHolder;
 
-            holder.imgSeat.setOnClickListener(v -> {
-                toggleSelection(position);
-                Toast.makeText(mContext, mItems.get(position).getLabel(), Toast.LENGTH_SHORT).show();
-
-                //mOnSeatSelected.onSeatSelected(getSelectedItemCount());
-            });
-
-            holder.imgSeatSelected.setVisibility(isSelected(position) ? View.VISIBLE : View.INVISIBLE);
+            if (status.equals("1")) {
+                holder.imgSeat.setImageResource(R.drawable.ic_seats_reserved);
+                holder.imgSeat.setOnClickListener(v -> {
+                    Toast.makeText(mContext, item.getLabel() + " is reserved", Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                holder.imgSeat.setOnClickListener(v -> {
+                    if(selectedSeatList.contains(item.getLabel())){
+                        selectedSeatList.remove(item.getLabel());
+                        holder.imgSeat.setImageResource(R.drawable.ic_seats_book);
+                    }else{
+                        selectedSeatList.add(item.getLabel());
+                        holder.imgSeat.setImageResource(R.drawable.ic_seats_booked);
+                    }
+                    for(int i=0; i<selectedSeatList.size(); i++){
+                        Log.d(TAG, "onBindViewHolder: " + selectedSeatList.get(i));
+                    }
+                    Toast.makeText(mContext, item.getLabel(), Toast.LENGTH_SHORT).show();
+                });
+            }
         }
     }
 
