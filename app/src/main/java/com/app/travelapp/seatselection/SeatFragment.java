@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.app.travelapp.R;
 import com.app.travelapp.adapter.SeatAdapter;
 import com.app.travelapp.data.model.SeatInformationItem;
+import com.app.travelapp.payment.PaymentFragment;
+import com.app.travelapp.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
     private SeatSelectionPresenter seatSelectionPresenter;
 
 
-    public SeatFragment() {
+    public SeatFragment(){
     }
 
     @Nullable
@@ -67,6 +69,14 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
                 items.add(new EmptyItem(""));
             }
         }
+        PaymentFragment paymentFragment = new PaymentFragment();
+        textViewSeatSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,paymentFragment).addToBackStack(null).commit();
+
+            }
+        });
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), COLUMNS);
         recyclerView = view.findViewById(R.id.recyclerViewSeat);
