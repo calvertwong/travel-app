@@ -71,9 +71,5 @@ public class SummaryFragment extends Fragment {
         btn_logout = view.findViewById(R.id.buttonLogout);
         tv_seats_selected = view.findViewById(R.id.textViewSeatsSelected);
         sharedPreferences = getActivity().getSharedPreferences("userPre", Context.MODE_PRIVATE);
-
-
-
-
     }
 }

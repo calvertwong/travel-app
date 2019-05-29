@@ -33,12 +33,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         init();
         sharedPreferences = getSharedPreferences("userPre", Context.MODE_PRIVATE);
-        setNavHeaderDetails();
 
         if (sharedPreferences.getString("id", "").equals("")) {
+            lockDrawer();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
         } else {
+            unlockDrawer();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            setNavHeaderDetails();
         }
     }
 
@@ -77,12 +79,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_sign_out) {
             editor = sharedPreferences.edit();
             editor.clear().apply();
+            lockDrawer();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    public void lockDrawer() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+
+    public void unlockDrawer() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     private void init() {

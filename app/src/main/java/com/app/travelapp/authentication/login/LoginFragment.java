@@ -16,6 +16,7 @@ import com.app.travelapp.R;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.authentication.register.RegisterFragment;
 import com.app.travelapp.route.home.HomeFragment;
+import com.app.travelapp.ui.MainActivity;
 
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {
     private static final String TAG = LoginFragment.class.getSimpleName();
@@ -25,7 +26,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     private TextInputEditText login_password_et;
     Context context;
     private LoginContract.Presenter login_presenter;
-    private MaterialButton login_material_btn;
+    private MaterialButton login_material_btn, login_create_account_btn;
     private TextView forgt_password_tv;
     private TextView no_account_tv;
     private View view;
@@ -43,6 +44,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         forgt_password_tv.setOnClickListener(this);
         no_account_tv.setOnClickListener(this);
         login_material_btn.setOnClickListener(this);
+        login_create_account_btn.setOnClickListener(this);
 
         return view;
     }
@@ -57,6 +59,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         login_material_btn = view.findViewById(R.id.login_sign_in_btn);
         forgt_password_tv = view.findViewById(R.id.login_forgot_password_r_tv);
         no_account_tv = view.findViewById(R.id.login_no_account_tv);
+        login_create_account_btn = view.findViewById(R.id.login_create_account_btn);
         login_presenter = new LoginPresenter(this, getContext());
     }
 
@@ -66,7 +69,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
             case R.id.login_forgot_password_r_tv:
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).addToBackStack(null).commit();
                 break;
-            case R.id.login_no_account_tv:
+            case R.id.login_create_account_btn:
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegisterFragment()).addToBackStack(null).commit();
                 break;
             case R.id.login_sign_in_btn:
@@ -84,6 +87,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     @Override
     public void getTohomePage() {
         getFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).addToBackStack(null).commit();
+        ((MainActivity)getActivity()).unlockDrawer();
     }
 
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.app.travelapp.R;
 import com.app.travelapp.route.citylist.CityListFragment;
 import com.app.travelapp.ui.BusDetailFragment;
+import com.app.travelapp.ui.MainActivity;
 import com.app.travelapp.ui.MapFragment;
 
 import java.time.LocalDate;
@@ -49,6 +50,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Home
     private void init() {
         TextView toolbar_title_tv = getActivity().findViewById(R.id.toolbar_title_tv);
         toolbar_title_tv.setText(getString(R.string.app_name));
+
+        ((MainActivity)getActivity()).setNavHeaderDetails();
 
         origin_tv = view.findViewById(R.id.origin_tv);
         destination_tv = view.findViewById(R.id.destination_tv);

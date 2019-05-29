@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.travelapp.R;
+import com.app.travelapp.authentication.login.LoginFragment;
 
 
 public class RegisterFragment extends Fragment implements RegisterContract.View, View.OnClickListener, View.OnFocusChangeListener {
@@ -32,7 +33,6 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_register, container, false);
-
         // initialize variables
         init();
 
@@ -135,8 +135,7 @@ public class RegisterFragment extends Fragment implements RegisterContract.View,
     // Navigate to login fragment
     @Override
     public void navigateToLogin(String msg) {
-                //                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
     }
 
 }
