@@ -20,6 +20,7 @@ import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.seatselection.SeatFragment;
 import com.app.travelapp.utils.PaymentEmailFragment;
+import com.app.travelapp.utils.SummaryFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private SharedPreferences sharedPreferences;
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
         }  else if (id == R.id.nav_forgot_password) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).commit();
-
 
         } else if (id == R.id.nav_sign_out) {
             editor = sharedPreferences.edit();

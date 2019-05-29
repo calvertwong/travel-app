@@ -71,6 +71,9 @@ public class PaymentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
+        TextView toolbar_title_tv = getActivity().findViewById(R.id.toolbar_title_tv);
+        toolbar_title_tv.setText(getString(R.string.payment));
+
         button = view.findViewById(R.id.buyItBtn);
         textresult = view.findViewById(R.id.txtResult);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
