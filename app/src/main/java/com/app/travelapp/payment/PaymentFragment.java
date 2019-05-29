@@ -1,6 +1,5 @@
 package com.app.travelapp.payment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.app.travelapp.R;
-import com.app.travelapp.utils.SelectedSeatClass;
+import com.app.travelapp.utils.SummaryFragment;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalItem;
@@ -30,10 +27,8 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.paypal.android.sdk.payments.ShippingAddress;
 import org.json.JSONException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,6 +46,8 @@ public class PaymentFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private int numOfTickets;
     private String totalFare;
+    private String resultText;
+
 
 
     private static final String CONFIG_CLIENT_ID = "AWoffHc6UApu6IbpSCjucIVblKmQIpJCJqOTu0eAlKvGGiiS67ZZj5B4p8P7WB_Ad8dvnoviQkUpRHEh";
@@ -76,11 +73,15 @@ public class PaymentFragment extends Fragment {
 
         button = view.findViewById(R.id.buyItBtn);
         textresult = view.findViewById(R.id.txtResult);
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
         String seatLabelString = sharedPreferences.getString("selectedseats", "");
         selectedSeatArray = seatLabelString.split(",");
+        resultText = calculateTotalFare(selectedSeatArray);
+        textresult.setText("No. of Seats : " + selectedSeatArray.length + "\n" + "Total Amount : " + resultText);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("noOfSeats",(String.valueOf(selectedSeatArray.length)));
+        editor.putString("totalAmount",resultText);
+        editor.apply();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,9 +92,11 @@ public class PaymentFragment extends Fragment {
         return view;
     }
 
+
     private String calculateTotalFare(String[] selectedSeatArray) {
 
         totalFare = String.valueOf(selectedSeatArray.length * Float.parseFloat(sharedPreferences.getString("fare", "0")));
+
         return totalFare;
     }
 
@@ -132,7 +135,9 @@ public class PaymentFragment extends Fragment {
                         Log.i(TAG, confirm.getPayment().toJSONObject().toString(4));
 
 
-                        displayResultText("PaymentConfirmation info received from PayPal");
+                        //displayResultText("PaymentConfirmation info received from PayPal");
+                        displayResultText("No. of Seats : " + selectedSeatArray.length +
+                                            "\n" + "Total Amount : " + resultText);
 
 
                     } catch (JSONException e) {
@@ -208,9 +213,12 @@ public class PaymentFragment extends Fragment {
 
 
     protected void displayResultText(String result) {
-        textresult.setText("Result : " + result);
-        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        textresult.setText(result);
+        SummaryFragment summaryFragment = new SummaryFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, summaryFragment).addToBackStack(null).commit();
+        //Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onDestroy() {

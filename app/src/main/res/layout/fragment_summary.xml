@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/AppTheme"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/tvSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Success!"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your payment is processing. Below is the summary of your purchase :"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvSuccess"
+        android:gravity="center"/>
+
+    <TextView
+        android:hint="Bus No:"
+        android:id="@+id/textViewBusId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/confirm"/>
+
+    <TextView
+        android:id="@+id/textViewNoOfSeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="No. of Seats :"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBusId" />
+    <TextView
+        android:id="@+id/textViewSeatsSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewNoOfSeat"
+        />
+
+    <TextView
+        android:id="@+id/textViewTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total Amount paid :"
+        app:layout_constraintTop_toBottomOf="@id/textViewSeatsSelected" />
+
+    <TextView
+        android:id="@+id/payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Method : Paypal"
+        app:layout_constraintTop_toBottomOf="@id/textViewTotalAmount" />
+
+    <Button
+        android:id="@+id/buttonHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="57dp"
+        android:gravity="center"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/buttonHome"
+        app:layout_constraintStart_toEndOf="@+id/buttonHome"
+        app:layout_constraintTop_toBottomOf="@id/payment" />
+
+
+
+</android.support.constraint.ConstraintLayout>

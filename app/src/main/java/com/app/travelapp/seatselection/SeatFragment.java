@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +15,9 @@ import android.widget.TextView;
 
 import com.app.travelapp.R;
 import com.app.travelapp.adapter.SeatAdapter;
-import com.app.travelapp.data.model.Seat;
 import com.app.travelapp.data.model.SeatInformationItem;
 import com.app.travelapp.payment.PaymentFragment;
-import com.app.travelapp.ui.BusDetailFragment;
-import com.app.travelapp.utils.SelectedSeatClass;
-import com.app.travelapp.payment.PaymentFragment;
-import com.app.travelapp.ui.MainActivity;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +51,8 @@ public class SeatFragment extends Fragment implements SeatSelectionContract.View
         textViewSeatSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PaymentFragment()).addToBackStack(null).commit();
             }
         });
