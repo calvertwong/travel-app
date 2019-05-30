@@ -1,5 +1,7 @@
 package com.app.travelapp.utils;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.login.LoginFragment;
 import com.app.travelapp.route.home.HomeFragment;
+import android.support.v4.app.NotificationCompat;
 
 public class SummaryFragment extends Fragment {
     private View view;
@@ -22,6 +25,8 @@ public class SummaryFragment extends Fragment {
     private Button btn_home, btn_logout;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private NotificationManager notifyManager;
+    private static final int NOTIFICATION_ID = 0;
 
 
     public SummaryFragment(){
@@ -43,6 +48,7 @@ public class SummaryFragment extends Fragment {
         tv_noOfSeats.setText("No of Seats :" + noOfSeats);
         tv_seats_selected.setText("Seat No :" + seats);
         tv_totalAmount.setText("Total Amount paid :" + totalAmount);
+        sendNotification();
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +68,7 @@ public class SummaryFragment extends Fragment {
         return view;
     }
 
+
     private void init() {
         tv_busNo = view.findViewById(R.id.textViewBusId);
         tv_noOfSeats = view.findViewById(R.id.textViewNoOfSeat);
@@ -71,5 +78,14 @@ public class SummaryFragment extends Fragment {
         btn_logout = view.findViewById(R.id.buttonLogout);
         tv_seats_selected = view.findViewById(R.id.textViewSeatsSelected);
         sharedPreferences = getActivity().getSharedPreferences("userPre", Context.MODE_PRIVATE);
+        notifyManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+    private void sendNotification() {
+        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(getContext())
+                .setContentTitle("Payment is Processed!")
+                .setContentText("Your payment is being processed.")
+                .setSmallIcon(R.drawable.ic_payment);
+        Notification myNotification = notifyBuilder.build();
+        notifyManager.notify(NOTIFICATION_ID,myNotification);
     }
 }

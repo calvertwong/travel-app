@@ -50,7 +50,7 @@ public class PaymentNotificationFragment extends Fragment {
     public void sendNotification(){
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(getContext())
                 .setContentTitle("Payment is Processed!")
-                .setContentText("You payment is being processed.")
+                .setContentText("Your payment is being processed.")
                 .setSmallIcon(R.drawable.ic_payment);
         Notification myNotification = notifyBuilder.build();
         notifyManager.notify(NOTIFICATION_ID,myNotification);
