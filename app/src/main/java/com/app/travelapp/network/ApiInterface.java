@@ -3,15 +3,11 @@ package com.app.travelapp.network;
 import com.app.travelapp.data.model.CityResponse;
 import com.app.travelapp.data.model.ForgotPasswordResponse;
 import com.app.travelapp.data.model.LoginResponse;
-
 import com.app.travelapp.data.model.SeatsResponse;
 import com.app.travelapp.data.model.BusDetailResponse;
 import com.app.travelapp.data.model.RouteResponse;
 import java.util.List;
 import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;

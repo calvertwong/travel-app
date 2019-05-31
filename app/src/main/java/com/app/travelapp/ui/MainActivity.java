@@ -19,6 +19,7 @@ import com.app.travelapp.payment.PaymentFragment;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.seatselection.SeatFragment;
+import com.app.travelapp.utils.InformationFragment;
 import com.app.travelapp.utils.PaymentEmailFragment;
 import com.app.travelapp.utils.SummaryFragment;
 
@@ -76,7 +77,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }  else if (id == R.id.nav_forgot_password) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).commit();
 
-        } else if (id == R.id.nav_sign_out) {
+        } else if(id == R.id.nav_information){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InformationFragment()).commit();
+        }
+
+        else if (id == R.id.nav_sign_out) {
             editor = sharedPreferences.edit();
             editor.clear().apply();
             lockDrawer();

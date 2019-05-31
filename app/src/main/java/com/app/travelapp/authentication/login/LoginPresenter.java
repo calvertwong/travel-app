@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
-
 import com.app.travelapp.data.model.LoginResponse;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
@@ -37,7 +36,6 @@ public class LoginPresenter implements LoginContract.Presenter {
             view.showInputError(login_password_til, "Enter your password");
         } else {
             ApiInterface apiIterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
-
             Observable<List<LoginResponse>> loginObservable = apiIterface.setUserData(mobile, password);
             loginObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
