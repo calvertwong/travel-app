@@ -15,8 +15,11 @@ import android.widget.Toast;
 import com.app.travelapp.R;
 import com.app.travelapp.authentication.forgotpassword.ForgotPasswordFragment;
 import com.app.travelapp.authentication.register.RegisterFragment;
+import com.app.travelapp.di.InjectionComponent;
+import com.app.travelapp.di.RetrofitModule;
 import com.app.travelapp.route.home.HomeFragment;
 import com.app.travelapp.ui.MainActivity;
+import com.app.travelapp.utils.TravelApplication;
 
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginContract.View {
     private static final String TAG = LoginFragment.class.getSimpleName();

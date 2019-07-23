@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        android:name=".utils.TravelApplication"
         tools:ignore="GoogleAppIndexingWarning">
 
         <!--

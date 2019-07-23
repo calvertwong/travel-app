@@ -6,20 +6,27 @@ import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import com.app.travelapp.data.model.LoginResponse;
+import com.app.travelapp.di.RetrofitModule;
 import com.app.travelapp.network.ApiInterface;
 import com.app.travelapp.network.RetrofitInstance;
+import com.app.travelapp.ui.MainActivity;
+import com.app.travelapp.utils.TravelApplication;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class LoginPresenter implements LoginContract.Presenter {
     private LoginContract.View view;
     private final String TAG = LoginPresenter.class.getSimpleName();
     private Context context;
 
+//    @Inject
     LoginPresenter(LoginContract.View view, Context context) {
         this.view = view;
         this.context = context;
