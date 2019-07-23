@@ -16,25 +16,31 @@ public class InformationFragment extends Fragment {
     private View view;
     private TextView textView, tv_toolbar_title;
 
-    public InformationFragment(){
+    public InformationFragment() {
 
     }
+
     @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.information_fragment,container,false);
+        view = inflater.inflate(R.layout.information_fragment, container, false);
         textView = view.findViewById(R.id.tv_info);
         tv_toolbar_title = getActivity().findViewById(R.id.toolbar_title_tv);
         tv_toolbar_title.setText("Information");
-        textView.setText("-> User registration validation \n" +
-                        "\n-> RecyclerView \n" +
-                          "\n-> API - RxJava Network Library(Observer pattern) \n" +
-                            "\n-> Google Maps \n" +
-                            "\n-> Push Notification \n" +
-                            "\n-> Email Notification \n" +
-                            "\n-> Seat selection - selectable Adapter \n" +
-                            "\n-> SQLite Database");
+        textView.setText("-- MVP Architecture \n" +
+                "\n-- Authentication Validation using Regular Expression (Regex) \n" +
+                "\n-- RecyclerView with CardView\n" +
+                "\n-- Retrofit Network Library\n" +
+                "\n-- RxJava Network Library(Observer pattern) \n" +
+                "\n-- Seat selection - 3rd Party Library \n" +
+                "\n-- Paypal SDK \n" +
+                "\n-- SQLite Database \n" +
+                "\n-- Google Maps \n"
+//                        +
+//                "\n-- Push Notification \n" +
+//                "\n-- Email Notification \n"
+        );
 
         return view;
     }

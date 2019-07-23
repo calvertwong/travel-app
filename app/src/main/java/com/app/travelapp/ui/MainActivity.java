@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForgotPasswordFragment()).commit();
 
         } else if(id == R.id.nav_information){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InformationFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InformationFragment()).addToBackStack(null).commit();
         }
 
         else if (id == R.id.nav_sign_out) {
